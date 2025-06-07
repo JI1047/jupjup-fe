@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import LoginPage from './components/Login/LoginPage';
+import LocalSignUpPage from './components/Login/LocalSignUpPage';
+import SocialSignUpPage from './components/Login/SocialSignUpPage';
+
+import LoginSuccessPage from './components/Login/LoginSuccessPage'; // ✅ 추가
+import MainMap from './components/Point/MainMap';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/local-signup" element={<LocalSignUpPage />} />
+        <Route path="/social-signup" element={<SocialSignUpPage />} />
+        <Route path="/login-success" element={<LoginSuccessPage />} /> {/* ✅ 추가 */}
+        <Route path="/oauth/loginInfo" element={<LoginPage />} />
+        <Route path="/point-map" element={<MainMap />} />
+      </Routes>
+    </Router>
   );
 }
 
