@@ -16,7 +16,7 @@ function Signup() {
   // 이메일 중복 확인
   const handleCheckEmail = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/api/auth/check-email', {
+      const res = await axios.get('http://13.209.202.27:8080/api/auth/check-email', {
         params: { email }
       });
       setMessage(res.data); // "사용 가능한 이메일입니다"
@@ -37,7 +37,7 @@ function Signup() {
     }
 
     try {
-      const response = await axios.post('http://localhost:8080/api/auth/signup', {
+      const response = await axios.post('http://13.209.202.27:8080/api/auth/signup', {
         email,
         password,
         name,
@@ -58,13 +58,13 @@ function Signup() {
     <div className="signup-form">
       {/* 소셜 로그인 버튼 */}
       <div>
-        <a href="http://localhost:8080/oauth2/authorization/kakao">
+        <a href="http://13.209.202.27:8080/oauth2/authorization/kakao">
           <button>카카오로 시작</button>
         </a>
-        <a href="http://localhost:8080/oauth2/authorization/naver">
+        <a href="http://13.209.202.27:8080/oauth2/authorization/naver">
           <button>네이버로 시작</button>
         </a>
-        <a href="http://localhost:8080/oauth2/authorization/google">
+        <a href="http://13.209.202.27:8080/oauth2/authorization/google">
           <button>구글로 시작</button>
         </a>
       </div>

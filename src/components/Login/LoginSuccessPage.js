@@ -9,7 +9,7 @@ function LoginSuccessPage() {
         const token = localStorage.getItem("accessToken");
         console.log("👉 저장된 JWT:", token);
 
-        const response = await fetch('http://localhost:8080/api/auth/login-success', {
+        const response = await fetch('http://13.209.202.27:8080/api/auth/login-success', {
           headers: {
             Authorization: 'Bearer ' + token,
           },

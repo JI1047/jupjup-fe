@@ -19,7 +19,7 @@ function Signup() {
 
     try {
       const response = await axios.post(
-        `http://localhost:8080/api/auth/social-signup?snsId=${snsId}&provider=${provider}`,
+        `http://13.209.202.27:8080/api/auth/social-signup?snsId=${snsId}&provider=${provider}`,
         {
 
           name,

@@ -24,7 +24,7 @@ const MainMap = () => {
           'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png';
 
         // ✅ 위치 데이터 fetch
-        fetch('http://localhost:8080/map/main')
+        fetch('http://13.209.202.27:8080/map/main')
           .then((res) => res.json())
           .then((data) => {
             data.forEach((pos) => {

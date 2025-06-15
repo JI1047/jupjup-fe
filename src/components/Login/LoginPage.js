@@ -10,7 +10,7 @@ function LoginPage() {
   // ✅ 로컬 로그인
   const handleLogin = async () => {
     try {
-      const response = await fetch('http://localhost:8080/api/auth/local-login', {
+      const response = await fetch('http://13.209.202.27:8080/api/auth/local-login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: id, password }),
@@ -34,31 +34,20 @@ function LoginPage() {
 
   // ✅ 소셜 로그인 리디렉션 후 토큰 발급
   useEffect(() => {
-  let didRun = false; // ✅ 한 번만 실행하게 막기
+  const urlParams = new URLSearchParams(window.location.search);
+  const jwt = urlParams.get("token");
 
-  if (!didRun && window.location.pathname === '/oauth/loginInfo') {
-    didRun = true;
-
-    fetch('http://localhost:8080/api/auth/token', { credentials: 'include' })
-      .then((res) => {
-        if (!res.ok) throw new Error('토큰 발급 실패');
-        return res.json();
-      })
-      .then((data) => {
-        localStorage.setItem('accessToken', data.jwt);
-        console.log("🔥 accessToken:", localStorage.getItem("accessToken"));
-        navigate('/login-success');
-      })
-      .catch((err) => {
-        console.error('소셜 로그인 에러:', err);
-        alert('소셜 로그인 실패');
-      });
+  if (jwt) {
+    localStorage.setItem("accessToken", jwt);
+    console.log("🔥 accessToken:", jwt);
+    navigate("/login-success");
   }
 }, [navigate]);
 
+
   // ✅ 소셜 로그인 시작
   const socialLogin = (provider) => {
-    window.location.href = `http://localhost:8080/oauth2/authorization/${provider}`;
+    window.location.href = `http://13.209.202.27:8080/oauth2/authorization/${provider}`;
   };
 
   return (
@@ -91,7 +80,6 @@ function LoginPage() {
       <div className="sns-login">
         <h3>SNS 로그인</h3>
         <button onClick={() => socialLogin('kakao')}>카카오톡</button>
-        <button onClick={() => socialLogin('google')}>구글</button>
         <button onClick={() => socialLogin('naver')}>네이버</button>
       </div>
     </div>
