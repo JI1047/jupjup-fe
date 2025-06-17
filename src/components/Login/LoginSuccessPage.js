@@ -39,6 +39,8 @@ function LoginSuccessPage() {
       <p><strong>성별:</strong> {userData.gender}</p>
       <p><strong>생년월일:</strong> {userData.birth}</p>
       <p><strong>주소:</strong> {userData.address}</p>
+      <p><strong>포인트:</strong> {userData.point}</p>
+      
     </div>
   );
 }

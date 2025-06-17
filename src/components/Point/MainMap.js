@@ -37,38 +37,46 @@ const MainMap = () => {
                 title: pos.name,
                 image: markerImage,
               });
+// ✅ 수거 항목 items 리스트 처리
+                const itemListHtml = pos.itemNames && pos.itemNames.length > 0
+                ? `<ul style="padding-left: 18px; margin-top: 4px;">
+                    ${pos.itemNames.map(item => `<li>${item}</li>`).join('')}
+                  </ul>`
+                : '<div>수거 품목 정보 없음</div>';
 
-              const infowindow = new window.kakao.maps.InfoWindow({
-                content: `
-                  <div style="
-                    position: relative;
-                    padding: 10px;
-                    background: #fff;
-                    border: 1px solid #ccc;
-                    border-radius: 8px;
-                    font-size: 14px;
-                    box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
-                    max-width: 220px;
-                  ">
-                    <div style="font-weight: bold; margin-bottom: 5px;">${pos.name}</div>
-                    <div>주소: ${pos.lotAddress}</div>
-                    <div>연락처: ${pos.tel}</div>
-                    <div>설명: ${pos.description}</div>
+                const infowindow = new window.kakao.maps.InfoWindow({
+                  content: `
                     <div style="
-                      content: '';
-                      position: absolute;
-                      bottom: -10px;
-                      left: 50%;
-                      margin-left: -10px;
-                      width: 0;
-                      height: 0;
-                      border: 10px solid transparent;
-                      border-top-color: #fff;
-                      z-index: 1;
-                    "></div>
-                  </div>
-                `
-              });
+                      position: relative;
+                      padding: 10px;
+                      background: #fff;
+                      border: 1px solid #ccc;
+                      border-radius: 8px;
+                      font-size: 14px;
+                      box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+                      max-width: 240px;
+                    ">
+                      <div style="font-weight: bold; margin-bottom: 5px;">${pos.name}</div>
+                      <div>주소: ${pos.lotAddress}</div>
+                      <div>연락처: ${pos.tel}</div>
+                      <div>설명: ${pos.description}</div>
+                      <div style="margin-top: 5px;"><strong>수거 항목:</strong></div>
+                      ${itemListHtml}
+                      <div style="
+                        content: '';
+                        position: absolute;
+                        bottom: -10px;
+                        left: 50%;
+                        margin-left: -10px;
+                        width: 0;
+                        height: 0;
+                        border: 10px solid transparent;
+                        border-top-color: #fff;
+                        z-index: 1;
+                      "></div>
+                    </div>
+                  `
+                });
 
               window.kakao.maps.event.addListener(marker, 'click', function () {
                 infowindow.open(map, marker);
