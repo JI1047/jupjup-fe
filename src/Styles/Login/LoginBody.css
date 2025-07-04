@@ -1,0 +1,79 @@
+.LoginBody{
+    border: 3px solid hsl(102, 66%, 44%);
+    height: 34.5rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+}
+.login-box {
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+}
+
+.login-input {
+  padding: 10px;
+  font-size: 1rem;
+  border: none;
+  border-bottom: 1px solid #ccc;
+}
+
+.find-info {
+  font-size: 0.8rem;
+  color: #666;
+  text-align: right;
+}
+
+.social-login {
+  margin: 10px 0;
+  text-align: center;
+}
+
+.kakao-btn {
+  background-color: #fee500;
+  border: none;
+  padding: 10px;
+  margin: 5px 0;
+  width: 100%;
+  font-weight: bold;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.google-btn,
+.naver-btn {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  font-weight: bold;
+}
+
+.google-btn {
+  background-color: #fff;
+  border: 1px solid #ccc;
+}
+
+.naver-btn {
+  background-color: #03c75a;
+  color: white;
+}
+
+.login-btn, 
+.signup-btn {
+  padding: 12px;
+  background-color: #333;
+  color: white;
+  border: none;
+  width: 15rem;
+  font-size: 1rem;
+}

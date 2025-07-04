@@ -1,0 +1,32 @@
+.sociallogin{
+    height: 10rem;
+    width: 100%;
+    /*border: 3px solid hsl(102, 10%, 25%);*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.Box {
+  width: 20rem;
+  text-align: center;
+
+}
+.Text{
+  margin-top: 50px;
+}
+
+.kakao-btn {
+  background-color: #fee500;
+  border: none;
+  margin: 5px 0;
+  width: 100%;
+  font-weight: bold;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}

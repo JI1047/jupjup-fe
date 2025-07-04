@@ -1,0 +1,21 @@
+import "../../Styles/Signup/SignupHeader.css";
+
+
+const SignupHeader = () => {
+  return (
+    <div className="SignupHeader">
+     <a href="http://13.209.202.27:8080/oauth2/authorization/kakao">
+       <button className="Home-button">카카오</button></a>
+
+        <a href="http://13.209.202.27:8080/oauth2/authorization/naver">
+         <button className="Home-button">네이버</button></a>
+
+
+         <button className="Home-button">구글</button>
+    </div>
+     
+       
+  );
+};
+
+export default SignupHeader;

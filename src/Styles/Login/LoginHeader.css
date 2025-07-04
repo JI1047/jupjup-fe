@@ -1,4 +1,4 @@
-.Hader{
+.LoginHeader{
     display: flex;
     justify-content:flex-end;
     height: 4rem;
@@ -9,7 +9,7 @@
 
 }
 
-.login-button {
+.Home-button {
   padding: 5px 20px;
   margin: 15px;
   border: 1px solid #888;

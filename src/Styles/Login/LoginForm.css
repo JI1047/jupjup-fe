@@ -1,0 +1,66 @@
+.LoginForm{
+  height: 10rem;
+  width: 100%;
+  /*border: 3px solid hsl(102, 10%, 25%);*/
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.login-box {
+  width: 20rem;  
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+  
+}
+
+.login-input {
+  padding: 10px;
+  font-size: 1rem;
+  border: none;
+  border-bottom: 1px solid #ccc;
+}
+
+.login-input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+
+
+.find-info {
+  font-size: 0.8rem;
+  color: #666;
+  text-align:left;
+  margin-top: 8px;
+  display: flex;
+}
+
+.singup{
+  font-size: 0.8rem;
+  color: #666;
+  margin-left: 45%;
+
+}
+
+.find-info .find-link {
+  color: #555;
+  text-decoration: none;
+}
+
+.find-info .find-link:hover {
+  text-decoration: underline;
+}
+
+.login-btn {
+
+  padding: 12px;
+  background-color: #4f4e4e;
+  color: white;
+  border: none;
+  width: 100%;
+  font-size: 1rem;
+  cursor: pointer;
+}

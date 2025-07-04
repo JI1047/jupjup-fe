@@ -1,0 +1,7 @@
+.My-Header{
+    display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 5rem;
+    border: 4px solid #d81717;
+}
