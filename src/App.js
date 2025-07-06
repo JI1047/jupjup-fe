@@ -3,7 +3,7 @@ import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Test from "./Pages/Test";
 import Start from "./Pages/Start";
-import Main from "./Pages/Main";
+import Main from "./Pages/Main/Main";
 import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
 import LoginVal from "./Pages/LoginVal";
