@@ -1,7 +1,8 @@
 .Body-back{
     border: 3px solid hsl(102, 10%, 25%);
-    height: 35rem;
+
     width: 100%;
+
 
 }
 
@@ -9,7 +10,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 28rem;
+    height: 35rem;
     width: 100%;
     border: 3px solid hsl(102, 66%, 47%);
 

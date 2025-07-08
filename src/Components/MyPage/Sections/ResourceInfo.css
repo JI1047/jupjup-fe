@@ -1,0 +1,9 @@
+.ResourceInfo{
+  width: 38rem;
+}
+
+.resource-info-section {
+  background-color: #c7e4d0;
+  padding: 1rem;
+  border-radius: 10px;
+}
