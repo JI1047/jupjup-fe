@@ -6,7 +6,7 @@ import SocialSignUpPage from './components/Login/SocialSignUpPage';
 
 import LoginSuccessPage from './components/Login/LoginSuccessPage'; // ✅ 추가
 import MainMap from './components/Point/MainMap';
-
+import Search from './components/Item/ItemSearch'
 function App() {
   return (
     <Router>
@@ -17,6 +17,8 @@ function App() {
         <Route path="/login-success" element={<LoginSuccessPage />} /> {/* ✅ 추가 */}
         <Route path="/oauth/loginInfo" element={<LoginPage />} />
         <Route path="/point-map" element={<MainMap />} />
+        <Route path="/search" element={<Search />} />
+        
       </Routes>
     </Router>
   );
