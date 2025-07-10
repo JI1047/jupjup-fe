@@ -1,9 +1,7 @@
 .My{
-  margin-left: 10rem; /* 사이드바 공간만큼 밀어줌 */
-  padding: 1rem;
-  transition: margin-left 0.3s ease;
+ width: 100%;
 }
 
-.mypage-sidebar.closed ~ .My {
-  margin-left: 0; /* sidebar 닫히면 본문도 왼쪽으로 이동 */
-}
+/*}.mypage-sidebar.closed ~ .My {
+  margin-left: 0; sidebar 닫히면 본문도 왼쪽으로 이동 
+}*/

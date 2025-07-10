@@ -1,0 +1,34 @@
+.History-back{
+/*border: 3px solid hsl(102, 66%, 44%);*/
+width: 38rem;
+
+}
+
+.point-history-section {
+  background-color: #eeeeee;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+
+}
+
+.point-box {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+  padding: 0.5rem 0;
+}
+
+.check-history-button {
+  margin-top: 0.5rem;
+  align-self: flex-end;
+  padding:1rem 1rem;
+  background-color: #444;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+

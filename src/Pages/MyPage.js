@@ -1,7 +1,7 @@
 import "../Styles/Mypage/MyPage.css";
 import MypageHeader from "../Components/MyPage/MypageHeader.js";
-import MypageBody from "../Components/MyPage/MypageBody";
-import Sidebar from "../Components/MyPage/MypageSidebar";
+import MypageBody from "../Components/MyPage/MypageBody.js";
+//import Sidebar from "../Components/MyPage/MypageSidebar";
 
 
 const MyPage = () => {
@@ -9,7 +9,7 @@ const MyPage = () => {
     <div className="My">
        <MypageHeader />
          <MypageBody />
-         <Sidebar  />
+         {/*<Sidebar  />*/}
     </div>
   );
 };
