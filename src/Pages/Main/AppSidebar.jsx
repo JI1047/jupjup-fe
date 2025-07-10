@@ -1,4 +1,14 @@
-import { User, Clock, Coins, Mail, Settings, LogOut } from "lucide-react";
+import { useState } from "react"
+import { useNavigate } from "react-router-dom";
+import {
+  User,
+  Clock,
+  Coins,
+  Mail,
+  Settings,
+  LogOut,
+  Calculator,
+} from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -18,26 +28,46 @@ import "../../Styles/Main/appSidebar.css";
 
 const menuItems = [
   {
-    title: "My Page",
-    url: "#",
+    title: "마이페이지",
+    url: "/mypage",
     icon: User,
-    isActive: true,
   },
   {
     title: "포인트",
-    url: "#",
+    url: "/points",
     icon: Coins,
     badge: "25P",
+  },
+  {
+    title: "재활용품 계산",
+    url: "/calculate",
+    icon: Calculator,
   },
 ];
 
 const recentSearches = [
-  { title: "안양3동", url: "#" },
-  { title: "안양4동", url: "#" },
-  { title: "안양5동", url: "#" },
+  { title: "안양3동", url: "/search/anyang3" },
+  { title: "안양4동", url: "/search/anyang4" },
+  { title: "안양5동", url: "/search/anyang5" },
 ];
 
+
+
+// 최근 검색 클릭 핸들러
+
+
 export function AppSidebar() {
+  const navigate = useNavigate();
+
+  const [searchText, setSearchText] = useState("");
+  const handleRecentSearchClick = (text) => {
+    setSearchText(text);
+  };
+
+  const goToPage = (path) => {
+    navigate(path);
+  };
+
   return (
     <Sidebar>
       <SidebarHeader>
@@ -54,24 +84,21 @@ export function AppSidebar() {
           <SidebarMenu>
             {menuItems.map((item) => (
               <SidebarMenuItem key={item.title}>
-                <SidebarMenuButton asChild isActive={item.isActive}>
-                  <a href={item.url} className="sidebar-menu-button">
+                <SidebarMenuButton asChild>
+                  <button
+                    className="sidebar-menu-button"
+                    onClick={() => navigate(item.url)}
+                  >
                     <div className="menu-item-content">
                       <div className="menu-item-left">
                         <item.icon className="icon-small" />
                         <span>{item.title}</span>
                       </div>
                       {item.badge && (
-                        <span
-                          className={
-                            item.isActive ? "badge-green-active" : "badge"
-                          }
-                        >
-                          {item.badge}
-                        </span>
+                        <span className="badge">{item.badge}</span>
                       )}
                     </div>
-                  </a>
+                  </button>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             ))}
@@ -79,18 +106,23 @@ export function AppSidebar() {
         </SidebarGroupContent>
 
         <SidebarGroup>
-          <SidebarGroupLabel>최근 검색</SidebarGroupLabel>
+          <SidebarGroupLabel className="left-align-label">
+            최근 검색
+          </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {recentSearches.map((search) => (
                 <SidebarMenuItem key={search.title}>
                   <SidebarMenuButton asChild>
-                    <a href={search.url} className="sidebar-menu-button">
+                    <button
+                      className="sidebar-menu-button"
+                      onClick={() => handleRecentSearchClick(search.title)}
+                    >
                       <div className="menu-item-left">
                         <Clock className="icon-small" />
                         <span className="text-small">{search.title}</span>
                       </div>
-                    </a>
+                    </button>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
