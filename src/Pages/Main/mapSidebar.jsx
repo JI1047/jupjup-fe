@@ -24,7 +24,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Separator } from "./ui/separator";
 import { Button } from "./ui/button";
-import "../../Styles/Main/appSidebar.css";
+import "../../Styles/Main/mapSidebar.css";
 
 const menuItems = [
   {
