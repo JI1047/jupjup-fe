@@ -10,6 +10,7 @@ import LoginVal from "./Pages/LoginVal";
 import SocialSignUp from "./Pages/SocialSignUp";
 import MyPage from "./Pages/MyPage";
 import MypageInformation from "./Pages/MpInformation";
+import CalPage from './Pages/Main/calculate/calPage.jsx';
 
 
 
@@ -26,7 +27,7 @@ function App() {
                     <Route path="/SocialSignUp" element={<SocialSignUp />} />
                     <Route path="/MyPage" element={<MyPage />} />
                     <Route path="/MyPage" element={<MypageInformation />} />
-                    
+                    <Route path="/calPage" element={<CalPage />} />
 
                     <Route path="/Main" element={<Main />} />
 

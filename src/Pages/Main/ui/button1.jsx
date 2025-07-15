@@ -1,5 +1,5 @@
 import React from "react"
-import "../../../Styles/Main/ui_css/button.css"
+import "../../../Styles/Main/ui_css/button1.css"
 
 export function Button({
   className = "",

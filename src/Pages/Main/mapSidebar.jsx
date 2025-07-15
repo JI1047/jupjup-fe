@@ -22,8 +22,8 @@ import {
   SidebarMenuItem,
 } from "./ui/sidebar";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { Separator } from "./ui/separator";
-import { Button } from "./ui/button";
+import { Separator } from "./ui/separator1";
+import { Button } from "./ui/button1";
 import "../../Styles/Main/mapSidebar.css";
 
 const menuItems = [
@@ -40,7 +40,7 @@ const menuItems = [
   },
   {
     title: "재활용품 계산",
-    url: "/calculate",
+    url: "/calPage",
     icon: Calculator,
   },
 ];

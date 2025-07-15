@@ -1,5 +1,5 @@
 import React from "react"
-import "../../../Styles/Main/ui_css/separator.css"
+import "../../../Styles/Main/ui_css/separator1.css"
 
 export function Separator({ 
   className = "", 

@@ -5,7 +5,7 @@ import { AppSidebar } from "./mapSidebar.jsx"
 import { SearchBar } from "./SearchBar.jsx"
 import { MapView } from "./MapView.jsx"
 import "../../Styles/Main/Main.css"
-import "../../Styles/Main/globals.css"
+import "../../Styles/Main/globals1.css"
 
 export default function App() {
   return (
