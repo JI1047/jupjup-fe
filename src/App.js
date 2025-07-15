@@ -9,7 +9,9 @@ import Signup from "./Pages/Signup";
 import LoginVal from "./Pages/LoginVal";
 import SocialSignUp from "./Pages/SocialSignUp";
 import MyPage from "./Pages/MyPage";
-import MypageInformation from "./Pages/MpInformation";
+import MypageInfo from "./Components/MyPage/MypageInfo";
+import Pointhistory from "./Components/MyPage/MypagePointHistory";
+import ExchangeHistory from "./Components/MyPage/ExchangeHistory";
 
 
 
@@ -25,7 +27,9 @@ function App() {
                     <Route path="/LoginVal" element={<LoginVal />} />
                     <Route path="/SocialSignUp" element={<SocialSignUp />} />
                     <Route path="/MyPage" element={<MyPage />} />
-                    <Route path="/MyPage" element={<MypageInformation />} />
+                    <Route path="/MyPage/Info" element={<MypageInfo />} />
+                    <Route path="/MyPage/Poinhistory" element={<Pointhistory />} />
+                    <Route path="/MyPage/ExchangeHistory" element={<ExchangeHistory />} />
                     
 
                     <Route path="/Main" element={<Main />} />

@@ -23,20 +23,30 @@
 }
 
 .user-profile img {
-  width: 20rem;
-  height: 20rem;
+  width: 10rem;
+  height: 10rem;
   border-radius: 50%;
 }
 
 .user-buttons {
   display: flex;
-  gap: 0.5rem;
-  margin-top: 1rem;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  justify-content: center;
+  margin-left: 5rem;
+  
 }
 
 .user-buttons button {
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 2rem;
   border: none;
   border-radius: 6px;
   cursor: pointer;
+   background-color: #ffffff;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.user-buttons button:hover {
+  background-color: #b3b3b3;  
+  transform: translateY(-2px); 
 }
