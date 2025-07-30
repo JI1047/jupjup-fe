@@ -21,6 +21,14 @@ width: 38rem;
   padding: 0.5rem 0;
 }
 
+.Exchange-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  justify-content: end;
+
+  
+}
 .check-history-button {
   margin-top: 0.5rem;
   align-self: flex-end;
@@ -30,5 +38,19 @@ width: 38rem;
   border: none;
   border-radius: 6px;
   cursor: pointer;
+}
+
+.Exchange-buttons button {
+  padding: 0.5rem 2rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+   background-color: #ffffff;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.Exchange-buttons button:hover {
+  background-color: #b3b3b3;  
+  transform: translateY(-2px); 
 }
 

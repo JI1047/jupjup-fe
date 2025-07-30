@@ -1,0 +1,81 @@
+.ExchangeHistory{
+    width: 100%;
+}
+
+.Exchange{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+}
+
+.Exchange-body{
+    width: 60rem;
+ padding: 2rem;
+
+  margin: 2rem auto;
+  background-color: #fdfdfd;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+
+}
+
+
+.exchange-history h2 {
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 0.5rem;
+}
+
+.exchange-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.exchange-table th,
+.exchange-table td {
+  border: 1px solid #ddd;
+  padding: 0.75rem;
+  text-align: center;
+}
+
+.exchange-table th {
+  background-color: #f2f2f2;
+}
+
+.exchange-table tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.exchange-table td:last-child {
+  font-weight: 600;
+  color: #1da846;
+}
+
+.month-selector {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.month-nav {
+  background-color: #1da846;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: 600;
+}
+
+.month-nav:hover {
+  background-color: #158b36;
+}
+
+.current-month {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
