@@ -1,7 +1,7 @@
 .LoginHeader{
     display: flex;
     justify-content:flex-end;
-    height: 4rem;
+    height: 5rem;
     width: 100%;
     border: 3px solid hsl(0, 100%, 55%);
 
@@ -16,7 +16,7 @@
   background: white;
   border-radius: 4px;
   cursor: pointer;
-  height: 2rem;
-  width: 7em;
+  height: 3rem;
+  width: 9em;
 
 }
