@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { RecyclableSelector } from "./RecyclableSelector.jsx";
 import { RecyclableInfo } from "./RecyclableInfo.jsx";
-import { ScrollArea } from "./scroll-area.jsx";
-import { Separator } from "./separator.jsx";
+import { Separator } from "../ui/separator";
 import { Card, CardContent, CardHeader, CardTitle } from "./card.jsx";
+import { useNavigate } from "react-router-dom";
 
 // 가격 정보 (원 단위)
 const recyclablePrices = {
@@ -22,6 +22,8 @@ const recyclablePrices = {
 export default function App() {
   const [selectedItems, setSelectedItems] = useState([]);
   const [uploadedImage, setUploadedImage] = useState(null);
+  const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleImageUpload = (event) => {
     const file = event.target.files?.[0];
@@ -176,7 +178,14 @@ export default function App() {
           }
         `}
       </style>
-
+      <div className="My-Header">
+        <button className="home-back-button" onClick={() => navigate("/Main")}>
+          Home
+        </button>
+      </div>
+      {isInfoModalOpen && (
+        <RecyclableInfo onClose={() => setIsInfoModalOpen(false)} />
+      )}
       <div className="app">
         {/* 왼쪽 패널 */}
         <div className="left-panel">
@@ -214,7 +223,10 @@ export default function App() {
 
             {/* 재활용품 선택 */}
             <div className="section">
-              <RecyclableSelector onAddItem={addRecyclableItem} />
+              <RecyclableSelector
+                onAddItem={addRecyclableItem}
+                onHelpClick={() => setIsInfoModalOpen(true)}
+              />
             </div>
 
             {/* 선택 항목 표시 */}
@@ -307,11 +319,11 @@ export default function App() {
         </div>
 
         {/* 오른쪽 패널 */}
-        <div className="right-panel">
+        {/* <div className="right-panel">
           <ScrollArea style={{ height: "100%" }}>
             <RecyclableInfo />
           </ScrollArea>
-        </div>
+        </div> */}
       </div>
     </>
   );

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import { HelpCircle } from "lucide-react";
 
-export function RecyclableSelector({ onAddItem }) {
+export function RecyclableSelector({ onAddItem, onHelpClick }) {
   const [selectedItem, setSelectedItem] = useState("");
   const [quantity, setQuantity] = useState(1);
 
@@ -39,11 +40,37 @@ export function RecyclableSelector({ onAddItem }) {
             gap: 8px;
           }
 
+          .selector-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          }
+
           .selector-label {
             font-weight: bold;
             margin-bottom: 4px;
-            font-size: 14px;
+            font-size: 18px;
             text-align: start;
+          }
+
+          .help-button {
+            width: 20px;
+            height: 20px;
+            border-radius: 100%;
+            background-color:#f9fafb;
+            color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            padding: 0;
+          }
+
+          .help-button:hover {
+            background-color:rgb(0, 0, 0);
+            color: white;
           }
 
           .selector-row {
@@ -80,14 +107,24 @@ export function RecyclableSelector({ onAddItem }) {
             cursor: pointer;
           }
 
-          button:hover {
-            background-color: #2563eb;
-          }
+          // button:hover {
+          //   background-color: #2563eb;
+          // }
         `}
       </style>
 
       <div className="selector-container">
-        <label className="selector-label">재활용품 선택</label>
+        <div className="selector-header">
+          <label className="selector-label">재활용품 선택</label>
+          <button
+            className="help-button"
+            onClick={onHelpClick}
+            title="재활용품 정보 보기"
+          >
+            <HelpCircle size={25} />
+          </button>
+        </div>
+
         <div className="selector-row">
           <div className="left">
             <select

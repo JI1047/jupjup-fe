@@ -1,29 +1,10 @@
-import { useState } from "react"
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  User,
-  Clock,
-  Coins,
-  Mail,
-  Settings,
-  LogOut,
-  Calculator,
-} from "lucide-react";
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarGroupLabel,
-  SidebarHeader,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-} from "./ui/sidebar";
+import { User, Clock, Coins, Mail, Settings, LogOut, Calculator } from "lucide-react";
+import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "./ui/sidebar";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { Separator } from "./ui/separator1";
-import { Button } from "./ui/button1";
+import { Separator } from "./ui/separator";
+import { Button } from "./ui/button";
 import "../../Styles/Main/mapSidebar.css";
 
 const menuItems = [
@@ -51,10 +32,7 @@ const recentSearches = [
   { title: "안양5동", url: "/search/anyang5" },
 ];
 
-
-
 // 최근 검색 클릭 핸들러
-
 
 export function AppSidebar() {
   const navigate = useNavigate();

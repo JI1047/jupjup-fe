@@ -1,12 +1,56 @@
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 
-export function RecyclableInfo() {
+export function RecyclableInfo({ onClose }) {
+  const modalRef = useRef(null);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [dragging, setDragging] = useState(false);
+  const [offset, setOffset] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    // 처음 한 번: 중앙 배치
+    const centerX = window.innerWidth / 2 - 195;
+    const centerY = window.innerHeight / 2 - 350;
+    setPosition({ x: centerX, y: centerY });
+  }, []);
+  
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      if (!dragging) return;
+      const newX = e.clientX - offset.x;
+      const newY = e.clientY - offset.y;
+      setPosition({ x: newX, y: newY });
+    };
+  
+    const handleMouseUp = () => setDragging(false);
+  
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseup", handleMouseUp);
+  
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseup", handleMouseUp);
+    };
+  }, [dragging, offset]);
+  
+
+  const startDrag = (e) => {
+    const rect = modalRef.current.getBoundingClientRect();
+    setDragging(true);
+    setOffset({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+  };
+
   const infoData = [
     {
       title: "플라스틱 병",
       image: "./trash.jpeg",
       description: [
-        { text: "#고기 PA(선용품) 플라스틱 음료수 용기, 물통", color: "#374151" },
+        {
+          text: "#고기 PA(선용품) 플라스틱 음료수 용기, 물통",
+          color: "#374151",
+        },
         { text: "#라벨지 부착된 상태에서 배수 매립 처리", color: "#1f2937" },
       ],
     },
@@ -35,7 +79,10 @@ export function RecyclableInfo() {
       title: "기타",
       image: "./trash.jpeg",
       description: [
-        { text: "플라스틱 용기, 포장재, 백박지류 아니시금 올", color: "#6b7280" },
+        {
+          text: "플라스틱 용기, 포장재, 백박지류 아니시금 올",
+          color: "#6b7280",
+        },
         { text: "기타 다회의 건물 화면 일치", color: "#9ca3af" },
       ],
     },
@@ -96,26 +143,68 @@ export function RecyclableInfo() {
             margin: 4px 0;
             line-height: 1.5;
           }
+
+          .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 1000;
+          }
+
+          .modal-content {
+            position: fixed;
+            background: white;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            z-index: 1001;
+            padding: 24px;
+            cursor: move;
+          }
+
+          .modal-close {
+            position: absolute;
+            top: 8px;
+            right: 12px;
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: #ef4444;
+          }
         `}
       </style>
 
-      <div className="info-container">
-        <h2 className="info-title">재정된 물품 목록 매뉴얼</h2>
-        {infoData.map((item, index) => (
-          <div className="info-block" key={index}>
-            <div className="info-header">{item.title}</div>
-            <img src={item.image} alt={item.title} className="info-img" />
-            {item.description.map((desc, i) => (
-              <div
-                key={i}
-                className="info-description"
-                style={{ color: desc.color }}
-              >
-                {desc.text}
+      <div className="modal-backdrop" onClick={onClose}></div>
+
+      <div
+        className="modal-content"
+        ref={modalRef}
+        onMouseDown={startDrag}
+        style={{
+          left: position.x,
+          top: position.y,
+        }}
+      >
+        <button className="modal-close" onClick={onClose}>×</button>
+        <div className="info-container">
+          <h2 className="info-title">재정된 물품 목록 매뉴얼</h2>
+          {infoData.map((item, index) => (
+              <div className="info-block" key={index}>
+                <div className="info-header">{item.title}</div>
+                <img src={item.image} alt={item.title} className="info-img" />
+                {item.description.map((desc, i) => (
+                  <div
+                    key={i}
+                    className="info-description"
+                    style={{ color: desc.color }}
+                  >
+                    {desc.text}
+                  </div>
+                ))}
               </div>
             ))}
-          </div>
-        ))}
+        </div>
       </div>
     </>
   );
