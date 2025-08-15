@@ -7,8 +7,8 @@ const MypageBody = () => {
   return (
         <div className="My-Body">
         <UserProfile />
+       <ResourceInfo />
       <PointExchange />
-      <ResourceInfo />
 </div>
      );
 };

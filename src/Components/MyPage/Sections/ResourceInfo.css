@@ -3,13 +3,13 @@
 }
 
 .resource-info-section {
-  background-color: #c7e4d0;
+
   padding: 1rem;
   border-radius: 10px;
 }
 
 .point-history {
-  background-color: #c7e4d0;
+  background-color: #eeeeee;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
