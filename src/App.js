@@ -10,7 +10,7 @@ import SignupSuccess from "./Pages/SignupSuccess";
 import LoginVal from "./Pages/LoginVal";
 import SocialSignUp from "./Pages/SocialSignUp";
 import MyPage from "./Pages/MyPage";
-import MypageInformation from "./Pages/MpInformation";
+// import MypageInformation from "./Pages/MpInformation"; // 파일이 존재하지 않음
 import CalPage from './Pages/Main/calculate/calPage.jsx';
 import MypageInfo from "./Components/MyPage/MypageInfo";
 import Pointhistory from "./Components/MyPage/MypagePointHistory";
@@ -32,7 +32,7 @@ function App() {
                     <Route path="/Signup/SocialSignUp" element={<SocialSignUp />} />
                     <Route path="/signup-success" element={<SignupSuccess />} />
                     <Route path="/MyPage" element={<MyPage />} />
-                    <Route path="/MyPage" element={<MypageInformation />} />
+                    {/* <Route path="/MyPage" element={<MypageInformation />} /> */}
                     <Route path="/calPage" element={<CalPage />} />
                     <Route path="/MyPage/Info" element={<MypageInfo />} />
                     <Route path="/MyPage/Poinhistory" element={<Pointhistory />} />
