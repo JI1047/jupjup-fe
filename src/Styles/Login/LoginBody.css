@@ -1,6 +1,6 @@
 .LoginBody{
     border: 3px solid hsl(102, 66%, 44%);
-    height: 34.5rem;
+    height: 48rem;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -10,7 +10,7 @@
 
 }
 .login-box {
-  width: 320px;
+  width: 15rem;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -31,7 +31,7 @@
 }
 
 .social-login {
-  margin: 10px 0;
+
   text-align: center;
 }
 
@@ -39,7 +39,7 @@
   background-color: #fee500;
   border: none;
   padding: 10px;
-  margin: 5px 0;
+
   width: 100%;
   font-weight: bold;
 }

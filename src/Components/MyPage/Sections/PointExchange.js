@@ -16,7 +16,7 @@ const PointExchange = () => {
           <strong>1P</strong>
         </div>
         <div className="Exchange-buttons">
-        <button >환전신청</button>
+        <button onClick={() => navigate("/MyPage/ExchangeRequest")}>환전신청</button>
         <button onClick={() => navigate("/MyPage/ExchangeHistory")}>환전내역</button>
         </div>
       </section>

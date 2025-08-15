@@ -11,6 +11,9 @@ const StartHader = () => {
            <Link to="/Mypage">
           <button className="login-button">Mypage</button>{/*임시 경로수정필요*/}
           </Link>
+          <Link to="/SignupSuccess">
+          <button className="login-button">가입완료</button>{/*임시 경로수정필요*/}
+          </Link>
     </div>
   );
 };
