@@ -1,21 +1,21 @@
-import React from "react"
-import "../../../Styles/Main/ui_css/separator.css"
+import React from "react";
+import "../../../Styles/Main/ui_css/separator.css";
 
-export function Separator({ 
-  className = "", 
-  orientation = "horizontal", 
+export function Separator({
+  className = "",
+  orientation = "horizontal",
   decorative = true,
-  ...props 
+  ...props
 }) {
-  const baseClass = orientation === "horizontal" ? "separator" : "separator-vertical"
-  const combinedClassName = `${baseClass} ${className}`.trim()
+  const orientationClass =
+    orientation === "horizontal" ? "separator-horizontal" : "separator-vertical";
 
   return (
     <div
       role={decorative ? "none" : "separator"}
       aria-orientation={orientation}
-      className={combinedClassName}
+      className={`separator ${orientationClass} ${className}`.trim()}
       {...props}
     />
-  )
+  );
 }
