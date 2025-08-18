@@ -1,26 +1,7 @@
-import { useState } from "react"
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  User,
-  Clock,
-  Coins,
-  Mail,
-  Settings,
-  LogOut,
-  Calculator,
-} from "lucide-react";
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarGroupLabel,
-  SidebarHeader,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-} from "./ui/sidebar";
+import { User, Clock, Coins, Mail, Settings, LogOut, Calculator } from "lucide-react";
+import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "./ui/sidebar";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Separator } from "./ui/separator";
 import { Button } from "./ui/button";
@@ -40,7 +21,7 @@ const menuItems = [
   },
   {
     title: "재활용품 계산",
-    url: "/calculate",
+    url: "/calPage",
     icon: Calculator,
   },
 ];
@@ -51,10 +32,7 @@ const recentSearches = [
   { title: "안양5동", url: "/search/anyang5" },
 ];
 
-
-
 // 최근 검색 클릭 핸들러
-
 
 export function AppSidebar() {
   const navigate = useNavigate();

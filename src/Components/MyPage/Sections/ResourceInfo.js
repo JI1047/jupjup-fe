@@ -8,6 +8,9 @@ const ResourceInfo = () => {
   return (
     <div className="ResourceInfo">
         <section className="point-history">
+          <div className="text-box">
+            <h1></h1>
+          </div>
         <div className="point-box">
           <p>포인트 내역</p>
           <strong>1P</strong>
