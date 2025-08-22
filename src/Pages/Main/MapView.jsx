@@ -26,7 +26,7 @@ export function MapView() {
 
       const container = document.getElementById("map");
       const options = {
-        center: new window.kakao.maps.LatLng(37.5665, 126.978),
+        center: new window.kakao.maps.LatLng(37.6581404, 126.8321693),
         level: 3,
       };
 
