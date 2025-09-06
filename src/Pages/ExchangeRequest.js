@@ -1,14 +1,17 @@
-import React from 'react';
+import Header from "../Components/ExchangeRequest/RequestHeader.js";
+import Body from "../Components/ExchangeRequest/RequestBody.js";
+import "../Styles/ExchangeRequest/ExchangeRequest.css";
 
-function ExchangeRequest() {
-  return (
-    <div style={{ padding: '24px' }}>
-      <h1>Exchange Request</h1>
-      <p>Submit your point exchange request here.</p>
-    </div>
-  );
-}
+const ExchangeRequest = () => {
+
+    return (
+        
+        <div className="request-back">
+            <Header />
+            <Body />
+        </div>
+
+         );
+};
 
 export default ExchangeRequest;
-
-

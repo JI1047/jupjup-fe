@@ -1,10 +1,11 @@
 import "../../Styles/Signup/SignupBody.css";
-import React, { useState } from 'react';
-import { useSearchParams,useNavigate  } from 'react-router-dom';
+import  { useState } from 'react';
+import { useNavigate  } from 'react-router-dom';
 import axios from 'axios';
 
 
 function SignupBody() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -50,6 +51,7 @@ function SignupBody() {
       });
       console.log('회원가입 성공:', response.data);
       alert('회원가입 성공!');
+      navigate('/signup-success');
     } catch (error) {
       console.error('회원가입 실패:', error);
       alert('회원가입 실패!');
