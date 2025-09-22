@@ -10,14 +10,12 @@ import SignupSuccess from "./Pages/SignupSuccess";
 import LoginVal from "./Pages/LoginVal";
 import SocialSignUp from "./Pages/SocialSignUp";
 import MyPage from "./Pages/MyPage";
-// import MypageInformation from "./Pages/MpInformation"; // 파일이 존재하지 않음
 import CalPage from './Pages/Main/calculate/calPage.jsx';
 import MypageInfo from "./Components/MyPage/MypageInfo";
 import Pointhistory from "./Components/MyPage/MypagePointHistory";
 import ExchangeHistory from "./Components/MyPage/ExchangeHistory";
 import ExchangeRequest from "./Pages/ExchangeRequest";
-
-
+import AuthCodePage from "./Pages/Main/auth.jsx";
 
 function App() {
   return (
@@ -39,11 +37,8 @@ function App() {
                     <Route path="/MyPage/ExchangeHistory" element={<ExchangeHistory />} />
                     <Route path="/MyPage/ExchangeRequest" element={<ExchangeRequest />} />
                     
-
                     <Route path="/Main" element={<Main />} />
-
-
-
+                    <Route path="/auth" element={<AuthCodePage />} />
                 </Routes>
       </BrowserRouter>
 

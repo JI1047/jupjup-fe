@@ -7,6 +7,7 @@ import {
   Settings,
   LogOut,
   Calculator,
+  Key,
 } from "lucide-react";
 
 import {
@@ -35,6 +36,7 @@ const menuItems = [
   { title: "마이페이지", url: "/mypage", icon: User },
   { title: "포인트", url: "/points", icon: Coins, badge: "25P" },
   { title: "재활용품 계산", url: "/calPage", icon: Calculator },
+  { title: "인증코드 입력", url: "/auth", icon: Key },
 ];
 
 export function AppSidebar() {
@@ -91,23 +93,30 @@ export function AppSidebar() {
             최근 검색
           </SidebarGroupLabel>
           <SidebarGroupContent>
-            <SidebarMenu>
-              {recentSearches.map((search) => (
-                <SidebarMenuItem key={search}>
-                  <SidebarMenuButton asChild>
-                    <button
-                      className="sidebar-menu-button"
-                      onClick={() => handleRecentSearchClick(search)}
-                    >
-                      <div className="menu-item-left">
-                        <Clock className="icon-small" />
-                        <span className="text-small">{search}</span>
-                      </div>
-                    </button>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
+            <SidebarGroup>
+              <SidebarGroupLabel className="left-align-label">
+                최근 검색
+              </SidebarGroupLabel>
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  {recentSearches.map((search) => (
+                    <SidebarMenuItem key={search}>
+                      <SidebarMenuButton asChild>
+                        <button
+                          className="sidebar-menu-button"
+                          onClick={() => handleRecentSearchClick(search)}
+                        >
+                          <div className="menu-item-left">
+                            <Clock className="icon-small" />
+                            <span className="text-small">{search}</span>
+                          </div>
+                        </button>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  ))}
+                </SidebarMenu>
+              </SidebarGroupContent>
+            </SidebarGroup>
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
