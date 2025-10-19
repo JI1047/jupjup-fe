@@ -10,14 +10,12 @@ import SignupSuccess from "./Pages/SignupSuccess";
 import LoginVal from "./Pages/LoginVal";
 import SocialSignUp from "./Pages/SocialSignUp";
 import MyPage from "./Pages/MyPage";
-//import MypageInformation from "./Pages/MpInformation";
 import CalPage from './Pages/Main/calculate/calPage.jsx';
 import MypageInfo from "./Components/MyPage/MypageInfo";
 import Pointhistory from "./Components/MyPage/MypagePointHistory";
 import ExchangeHistory from "./Components/MyPage/ExchangeHistory";
 import ExchangeRequest from "./Pages/ExchangeRequest";
-
-
+import AuthCodePage from "./Pages/Main/auth.jsx";
 
 function App() {
   return (
@@ -32,18 +30,15 @@ function App() {
                     <Route path="/Signup/SocialSignUp" element={<SocialSignUp />} />
                     <Route path="/signup-success" element={<SignupSuccess />} />
                     <Route path="/MyPage" element={<MyPage />} />
-                 
+                    {/* <Route path="/MyPage" element={<MypageInformation />} /> */}
                     <Route path="/calPage" element={<CalPage />} />
                     <Route path="/MyPage/Info" element={<MypageInfo />} />
                     <Route path="/MyPage/Poinhistory" element={<Pointhistory />} />
                     <Route path="/MyPage/ExchangeHistory" element={<ExchangeHistory />} />
                     <Route path="/MyPage/ExchangeRequest" element={<ExchangeRequest />} />
                     
-
                     <Route path="/Main" element={<Main />} />
-
-
-
+                    <Route path="/auth" element={<AuthCodePage />} />
                 </Routes>
       </BrowserRouter>
 

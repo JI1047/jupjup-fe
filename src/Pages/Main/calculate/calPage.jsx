@@ -176,6 +176,11 @@ export default function App() {
             color: #6b7280;
             margin-bottom: 6px;
           }
+          .auth-button {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 16px;
+          }
         `}
       </style>
       <div className="My-Header">
@@ -315,6 +320,14 @@ export default function App() {
                 </Card>
               </div>
             )}
+            <div className="auth-button">
+              <button
+                onClick={() => navigate("/auth")}
+                className="btn btn-default"
+              >
+                인증 페이지로 이동
+              </button>
+            </div>
           </div>
         </div>
 
