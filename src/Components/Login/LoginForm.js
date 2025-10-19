@@ -25,7 +25,6 @@ function LoginForm() {
         console.log("🔥 accessToken:", localStorage.getItem("accessToken"));
 
         console.log('로컬 로그인 성공:', data);
-        navigate('/LoginVal');
       } else {
         alert('로그인 실패: 아이디 또는 비밀번호가 틀렸습니다.');
       }
