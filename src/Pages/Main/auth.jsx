@@ -1,89 +1,109 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../../Styles/Mypage/MypageHeader.css";
+import "../../Components/MyPage/MypageHeader.js";
+import "../../Styles/Main/Admin.css";
 
-export default function Auth() {
+export default function Admin() {
   const navigate = useNavigate();
-  const [authCode, setAuthCode] = useState("");
+
+  const [formData, setFormData] = useState({
+    userId: "",
+    locationId: "",
+    itemId: "",
+    quantity: "",
+    calculatedPoint: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (authCode.trim() === "") {
-      alert("인증 코드를 입력해주세요.");
-      return;
-    }
-
-    // TODO: 서버에 인증 코드 전송 + 포인트 적립 처리
-    alert(`입력한 인증 코드: ${authCode}`);
-    setAuthCode(""); // 입력값 초기화
+    console.log("제출된 데이터:", formData);
+    // TODO: 백엔드 전송 로직
   };
 
   return (
     <div>
-      <style>
-        {`
-                .auth-body-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 4rem;
-  text-align: center;
-}
-
-.auth-form {
-  margin-top: 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  width: 300px;
-}
-
-.auth-input {
-  padding: 0.75rem;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.auth-submit-button {
-  padding: 0.75rem;
-  background-color: #1da846;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.auth-submit-button:hover {
-  background-color: #0a5218;
-}
-
-            `}
-      </style>
-      {/* ✅ 헤더 */}
+      {/* ✅ 상단 헤더 유지 */}
       <div className="My-Header">
         <button className="home-back-button" onClick={() => navigate("/Main")}>
           Home
         </button>
       </div>
 
-      {/* ✅ 본문 */}
-      <div className="auth-body-container">
-        <h2>거점 인증 코드 입력</h2>
-        <p>거점에서 받은 인증 코드를 입력하면 포인트를 적립할 수 있어요.</p>
-
-        <form className="auth-form" onSubmit={handleSubmit}>
+      {/* ✅ 입력 폼 */}
+      <div className="admin-container">
+        <h2 className="admin-title">관리자 입력</h2>
+        <form className="admin-form" onSubmit={handleSubmit}>
+          <label className="admin-label">사용자 ID (이름)</label>
           <input
             type="text"
-            placeholder="인증 코드 입력"
-            value={authCode}
-            onChange={(e) => setAuthCode(e.target.value)}
-            className="auth-input"
+            name="userId"
+            className="admin-input"
+            value={formData.userId}
+            onChange={handleChange}
           />
-          <button type="submit" className="auth-submit-button">
-            코드 제출
+
+          <label className="admin-label">거점 ID (장소명)</label>
+          <input
+            type="text"
+            name="locationId"
+            className="admin-input"
+            value={formData.locationId}
+            onChange={handleChange}
+          />
+
+          <label className="admin-label">품목 ID</label>
+          <select
+            name="itemId"
+            className="admin-select"
+            value={formData.itemId}
+            onChange={handleChange}
+          >
+            <option value="">-- 재활용 품목 선택 --</option>
+            <option value="플라스틱">플라스틱</option>
+            <option value="페트병">페트병</option>
+            <option value="캔">캔</option>
+            <option value="유리병">유리병</option>
+            <option value="종이">종이</option>
+            <option value="신문지">신문지</option>
+            <option value="종이컵">종이컵</option>
+            <option value="의류">의류</option>
+            <option value="비닐">비닐</option>
+            <option value="스티로폼">스티로폼</option>
+            <option value="전자제품">전자제품</option>
+            <option value="건전지">건전지</option>
+            <option value="형광등">형광등</option>
+            <option value="종이팩">종이팩</option>
+            <option value="우유팩">우유팩</option>
+          </select>
+
+          <label className="admin-label">수량</label>
+          <input
+            type="number"
+            name="quantity"
+            className="admin-input"
+            value={formData.quantity}
+            onChange={handleChange}
+          />
+
+          <label className="admin-label">포인트</label>
+          <input
+            type="number"
+            name="calculatedPoint"
+            className="admin-input"
+            value={formData.calculatedPoint}
+            onChange={handleChange}
+          />
+
+          <button type="submit" className="admin-submit-button">
+            저장
           </button>
         </form>
       </div>

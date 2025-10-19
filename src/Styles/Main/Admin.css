@@ -1,0 +1,62 @@
+.admin-container {
+  max-width: 500px;
+  margin: 60px auto;
+  padding: 32px 32px 120px; /* 아래 패딩 충분히 줘서 드롭다운 공간 확보 */
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: visible;
+  position: relative;
+}
+
+.admin-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.admin-label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #333;
+  text-align: start;
+}
+
+.admin-input,
+.admin-select {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 20px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: white;
+  color: #333;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease;
+}
+
+.admin-input:focus,
+.admin-select:focus {
+  border-color: #1da846;
+  outline: none;
+}
+
+.admin-submit-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #1da846;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.admin-submit-button:hover {
+  background-color: #0a5218;
+}

@@ -94,9 +94,6 @@ export function AppSidebar() {
           </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarGroup>
-              <SidebarGroupLabel className="left-align-label">
-                최근 검색
-              </SidebarGroupLabel>
               <SidebarGroupContent>
                 <SidebarMenu>
                   {recentSearches.map((search) => (
