@@ -1,45 +1,50 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { User, Clock, Coins, Mail, Settings, LogOut, Calculator } from "lucide-react";
-import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "./ui/sidebar";
+import {
+  User,
+  Clock,
+  Coins,
+  Mail,
+  Settings,
+  LogOut,
+  Calculator,
+  Key,
+} from "lucide-react";
+
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+} from "./ui/sidebar";
+
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Separator } from "./ui/separator";
 import { Button } from "./ui/button";
+
+import { useRecentSearch } from "./RecentSearch.jsx"; // ✅ 추가
+import { MapView } from "./MapView"; // ✅ 지도 이동용
+
 import "../../Styles/Main/mapSidebar.css";
 
 const menuItems = [
-  {
-    title: "마이페이지",
-    url: "/mypage",
-    icon: User,
-  },
-  {
-    title: "포인트",
-    url: "/points",
-    icon: Coins,
-    badge: "25P",
-  },
-  {
-    title: "재활용품 계산",
-    url: "/calPage",
-    icon: Calculator,
-  },
+  { title: "마이페이지", url: "/mypage", icon: User },
+  { title: "포인트", url: "/points", icon: Coins, badge: "25P" },
+  { title: "재활용품 계산", url: "/calPage", icon: Calculator },
+  { title: "인증코드 입력", url: "/auth", icon: Key },
 ];
-
-const recentSearches = [
-  { title: "안양3동", url: "/search/anyang3" },
-  { title: "안양4동", url: "/search/anyang4" },
-  { title: "안양5동", url: "/search/anyang5" },
-];
-
-// 최근 검색 클릭 핸들러
 
 export function AppSidebar() {
   const navigate = useNavigate();
+  const { recentSearches } = useRecentSearch(); // ✅ 최근 검색어 Context
 
-  const [searchText, setSearchText] = useState("");
   const handleRecentSearchClick = (text) => {
-    setSearchText(text);
+    MapView.moveToMarkerByName(text); // 👈 마커 위치로 지도 이동
   };
 
   const goToPage = (path) => {
@@ -65,7 +70,7 @@ export function AppSidebar() {
                 <SidebarMenuButton asChild>
                   <button
                     className="sidebar-menu-button"
-                    onClick={() => navigate(item.url)}
+                    onClick={() => goToPage(item.url)}
                   >
                     <div className="menu-item-content">
                       <div className="menu-item-left">
@@ -88,23 +93,27 @@ export function AppSidebar() {
             최근 검색
           </SidebarGroupLabel>
           <SidebarGroupContent>
-            <SidebarMenu>
-              {recentSearches.map((search) => (
-                <SidebarMenuItem key={search.title}>
-                  <SidebarMenuButton asChild>
-                    <button
-                      className="sidebar-menu-button"
-                      onClick={() => handleRecentSearchClick(search.title)}
-                    >
-                      <div className="menu-item-left">
-                        <Clock className="icon-small" />
-                        <span className="text-small">{search.title}</span>
-                      </div>
-                    </button>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
+            <SidebarGroup>
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  {recentSearches.map((search) => (
+                    <SidebarMenuItem key={search}>
+                      <SidebarMenuButton asChild>
+                        <button
+                          className="sidebar-menu-button"
+                          onClick={() => handleRecentSearchClick(search)}
+                        >
+                          <div className="menu-item-left">
+                            <Clock className="icon-small" />
+                            <span className="text-small">{search}</span>
+                          </div>
+                        </button>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  ))}
+                </SidebarMenu>
+              </SidebarGroupContent>
+            </SidebarGroup>
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
