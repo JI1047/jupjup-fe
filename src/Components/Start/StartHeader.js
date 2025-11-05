@@ -6,7 +6,7 @@ const StartHader = () => {
   return (
     <div className="Hader">
        <Link to="/Login">
-          <button className="login-button">Login</button>
+          <button className="login-button">Admin only</button>
           </Link>
           {/* <Link to="/Mypage">
          <button className="login-button">Mypage</button>
