@@ -5,13 +5,26 @@ import Body from "../Components/Start/StartBody";
 
 
 
+
 const Start = () => {
   return (
     <div className="Background">
-         <Header />
-         <Body />
-         {/*<Footer />*/}
-    </div>
+     
+        <Header />
+         <div className="image-wrapper">
+           <img
+          src="/images/Start2.png" 
+          alt="CHAJAJJU 메인 이미지"
+          className="full-bg"
+        />
+        
+        </div>
+        <Body />
+      </div>
+
+      /*<Body />
+         <Footer />*/
+  
   );
 };
 
