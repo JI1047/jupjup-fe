@@ -6,17 +6,26 @@ const StartBody = () => {
   return (
      <div className="Body-back">
     <div className="Body">
-      <div className="slogan">
-          <h1>이미지 공간</h1>
-           <Link to="/Signup">
-          <button className="pass-button">회원가입 후 바로 이용하기 ➜</button></Link>
-    </div> 
+   
+          
+           <Link to="/Login">
+          <button className="pass-button">로그인 후 바로 이용하기 ➜</button></Link>
+
+          
+  
     </div>
       <section className="contents-section">
-        <div className="content-card">Contents</div>
-        <div className="content-card">Contents</div>
-        <div className="content-card">Contents</div>
-        <div className="content-card">Contents</div>
+        <Link to="/Introduse">
+        <button className="content-card"></button></Link>
+
+    <Link to="/IntroduseSE">
+        <button className="content-card"></button></Link>
+
+        <Link to="/IntroduseTH">
+        <button className="content-card"></button></Link>
+
+        <Link to="/IntroduseFO">
+        <button className="content-card"></button></Link>
       </section>
 
    

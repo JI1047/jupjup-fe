@@ -16,6 +16,10 @@ import Pointhistory from "./Components/MyPage/MypagePointHistory";
 import ExchangeHistory from "./Components/MyPage/ExchangeHistory";
 import ExchangeRequest from "./Pages/ExchangeRequest";
 import AuthCodePage from "./Pages/Main/auth.jsx";
+import Introduse from "./Components/Start/introduse";
+import IntroduseSE from "./Components/Start/introduseSE";
+import IntroduseTH from "./Components/Start/introduseTH";
+import IntroduseFO from "./Components/Start/introduseFO";
 
 function App() {
   return (
@@ -24,6 +28,10 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Test />} />
                     <Route path="/Start" element={<Start />} />
+                    <Route path="Introduse" element={<Introduse />} />
+                    <Route path="IntroduseSE" element={<IntroduseSE />} />
+                    <Route path="IntroduseTH" element={<IntroduseTH />} />
+                    <Route path="IntroduseFO" element={<IntroduseFO />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/Signup" element={<Signup />} />
                     <Route path="/LoginVal" element={<LoginVal />} />
