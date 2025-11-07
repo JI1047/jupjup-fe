@@ -12,7 +12,7 @@ function UserProfile () {
           const token = localStorage.getItem("accessToken");
           console.log("👉 저장된 JWT:", token);
   
-          const response = await fetch('http://13.209.202.27:8080/api/auth/login-success', {
+          const response = await fetch('http://13.209.202.27:8080/api/auth/me', {
             headers: {
               Authorization: 'Bearer ' + token,
             },
@@ -48,7 +48,7 @@ function UserProfile () {
           </div>
           <div className="user-points">
             <p>보유 포인트</p>
-            <h2>24P</h2>
+             <h2>{userData.point ?? 0}P</h2>
           </div>
         </div>
         <div className="user-buttons">

@@ -25,6 +25,10 @@ function LoginForm() {
         console.log("🔥 accessToken:", localStorage.getItem("accessToken"));
 
         console.log('로컬 로그인 성공:', data);
+       // ✅ 토큰 저장 후 이동 (0.2초 딜레이로 안전하게)
+        setTimeout(() => {
+          navigate("/Main"); // 또는 /Main, 실제 페이지 경로에 맞게
+        }, 200);
       } else {
         alert('로그인 실패: 아이디 또는 비밀번호가 틀렸습니다.');
       }
@@ -68,8 +72,7 @@ function LoginForm() {
           </div>
           
          </div>
-         <Link to="/Main">
-         <button className="login-btn" onClick={handleLogin}>로그인하기</button></Link>
+          <button className="login-btn" onClick={handleLogin}>로그인하기</button>
     </div>
     </div>
   );
