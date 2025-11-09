@@ -1,133 +1,109 @@
-.requestbody{
-    width: 100%;
-}
+/* ===============================
+   RequestBody.css
+   - 상단 기본 정보 및 라디오 버튼
+   =============================== */
 
-.exchange-wrap {
-  max-width: 800px;
-  margin: 5rem auto;
-  padding: 24px 20px 48px;
-  font-family: "Pretendard", system-ui, -apple-system, Segoe UI, Roboto, Arial,
-    "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-  color: #111;
-}
-
-.points-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.points-title {
-  font-weight: 700;
-  font-size: 1.8rem;
-}
-
-.points-value {
-  font-weight: 800;
-  font-size: 1.5rem;
-  color: #17b449; /* 포인트 초록 */
-}
-.points-value span {
-  font-weight: 700;
-  margin-left: 6px;
-}
-
-.divider {
-  border: none;
-  border-top: 2px solid #111;
-  margin: 20px 0 30px;
-}
-
-.options {
-  display: grid;
-  gap: 2rem;
-  margin: 20px 0 18px;
-}
-
-
-.option {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  cursor: pointer;
-  user-select: none;
-  font-weight: 800;
-  letter-spacing: 0.2px;
-}
-.option input {
-  display: none;
-}
-
-.radio-visual {
-  width: 22px;
-  height: 22px;
-  border: 3px solid #111;
-  border-radius: 50%;
-  display: inline-block;
-  position: relative;
-  flex: 0 0 22px;
-  background: #fff;
-}
-
-
-.option.active .radio-visual::after {
-  content: "";
-  position: absolute;
-  inset: 3px;
-  border-radius: 50%;
-  background: #17b449;
-}
-
-
-.subtext {
-  font-weight: 600;
-  font-size: 12px;
-  margin-left: 6px;
-  color: #555;
-}
-
-.option-label {
-  display: inline-flex;
-  align-items: baseline;
-}
-
-
-.policy-link {
-  background: transparent;
-  border: none;
-  padding: 0;
-  color: #111;
-  font-size: 13px;
-  text-align: left;
-  cursor: pointer;
-}
-
-
-.submit-btn {
-  margin-left: auto;
-  display: block;
-  padding: 12px 18px;
-  border-radius: 10px;
-  border: none;
-  background: #17b449;
-  color: #fff;
-  font-weight: 800;
-  font-size: 16px;
-  cursor: pointer;
-  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.15);
-}
-.submit-btn:active {
-  transform: translateY(1px);
-}
-
-/* 반응형 살짝 여유 */
-@media (max-width: 420px) {
-  .exchange-wrap {
-    padding: 20px 16px 40px;
+   .RequestBody {
+    width: min(38rem, 100%);
+    margin: 0 auto;
   }
+  
+  /* 보유 포인트 박스 */
+  .balance-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 12px 14px;
+    margin-bottom: 14px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .balance-box .label {
+    color: #6b7280;
+    font-size: 13px;
+  }
+  .balance-box .value {
+    color: #16a34a;
+    font-weight: 800;
+  }
+  
+  /* 라디오 옵션 그룹 */
+  .options {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  .option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.2s ease;
+  }
+  .option:hover {
+    border-color: #d1d5db;
+    transform: translateY(-1px);
+  }
+  .option.active {
+    border-color: #86efac;
+    box-shadow: inset 0 0 0 1px #86efac;
+  }
+  .option input {
+    display: none;
+  }
+  .radio-visual {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid #d1d5db;
+    position: relative;
+  }
+  .option.active .radio-visual {
+    border-color: #4ade80;
+  }
+  .option.active .radio-visual::after {
+    content: "";
+    position: absolute;
+    inset: 3px;
+    border-radius: 50%;
+    background: #4ade80;
+  }
+  .option-text {
+    font-size: 14px;
+    color: #374151;
+  }
+  
+  /* 신청 버튼 */
   .submit-btn {
     width: 100%;
-    text-align: center;
+    padding: 12px 14px;
+    background: #16a34a;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s ease;
   }
-}
+  .submit-btn:hover {
+    filter: brightness(1.05);
+    transform: translateY(-1px);
+  }
+  .submit-btn:active {
+    transform: translateY(0);
+  }
+  
+  /* 하단 상세 섹션 여백 */
+  .details {
+    margin-top: 16px;
+  }
+  

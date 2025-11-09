@@ -8,6 +8,8 @@ import {
   LogOut,
   Calculator,
   Key,
+  Info,
+  ArrowLeftRight as Exchange,
 } from "lucide-react";
 
 import {
@@ -37,6 +39,8 @@ const menuItems = [
   { title: "포인트", url: "/points", icon: Coins, badge: "25P" },
   { title: "재활용품 계산", url: "/calPage", icon: Calculator },
   { title: "인증코드 입력", url: "/auth", icon: Key },
+  { title: "소개", url: "/start", icon: Info },
+  { title: "환전신청", url: "/MyPage/ExchangeRequest", icon: Exchange }
 ];
 
 export function AppSidebar() {
@@ -68,18 +72,22 @@ export function AppSidebar() {
             {menuItems.map((item) => (
               <SidebarMenuItem key={item.title}>
                 <SidebarMenuButton asChild>
+                  {/* 클릭 시 해당 페이지로 이동 */}
                   <button
                     className="sidebar-menu-button"
-                    onClick={() => goToPage(item.url)}
+                    onClick={() => goToPage(item.url)} // 클릭 시 해당 페이지로 이동
                   >
                     <div className="menu-item-content">
                       <div className="menu-item-left">
-                        <item.icon className="icon-small" />
+                        <item.icon className="icon-small" /> 
+                        {/* 텍스트 표시 */}
                         <span>{item.title}</span>
                       </div>
                       {item.badge && (
-                        <span className="badge">{item.badge}</span>
+                        <span className="badge">{item.badge}</span> // 배지 표시 (포인트 개수 표시)
                       )}
+                      {/* 소개, 환전신청 페이지 추가 시 배지 표시 */}
+                      
                     </div>
                   </button>
                 </SidebarMenuButton>

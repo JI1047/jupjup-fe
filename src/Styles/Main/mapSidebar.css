@@ -30,7 +30,7 @@
 .menu-item-left {
   display: flex;
   align-items: center;
-  gap: rem; /* 여기가 아이콘-텍스트 간 간격 */
+  gap: 0.5rem; /* 여기가 아이콘-텍스트 간 간격 */
 }
 
 .icon-small {
