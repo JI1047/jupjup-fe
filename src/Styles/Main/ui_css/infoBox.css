@@ -1,67 +1,125 @@
-.infoBox {
-  position: relative;
-  padding: 16px 20px 20px 20px;
-  background-color: #ffffff;
-  border-radius: 12px;
-  border: 1px solid #e5e7eb;
-  max-width: 280px;
-  font-size: 14px;
-  line-height: 1.6;
-  text-align: left; /* ✅ 전체 왼쪽 정렬 */
-}
+/* ===========================
+   infoBox.css — Pure Flat (one-layer)
+   - 하나의 흰 배경만 보이도록: box-shadow/::before 제거
+   - 꼬리는 중앙 역삼각형, 박스 테두리와 자연스럽게 연결
+   =========================== */
 
-.infoBox .close-btn {
-  position: absolute;
-  top: 10px;
-  right: 12px;
-  background: transparent;
-  border: none;
-  font-size: 18px;
-  color: #9ca3af;
-  cursor: pointer;
-  transition: color 0.2s ease;
-}
-
-.infoBox .close-btn:hover {
-  color: #ef4444;
-}
-
-.infoBox .title {
-  font-size: 16px;
-  font-weight: 700;
-  color: #047857;
-  margin-bottom: 12px;
-  text-align: center; /* ✅ 제목은 중앙 정렬 */
-}
-
-.infoBox .label {
-  font-weight: 600;
-  color: #374151;
-  margin-bottom: 2px;
-  margin-top: 10px;
-}
-
-.infoBox .value {
-  color: #4b5563;
-  margin-left: 4px;
-}
-
-.infoBox ul {
-  margin-top: 6px;
-  padding-left: 20px;
-  list-style: disc;
-  color: #0759dd;
-}
-
-.infoBox .tail {
-  content: "";
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-10px);
-  width: 0;
-  height: 0;
-  border: 10px solid transparent;
-  border-top-color: white;
-  z-index: 1;
-}
+   .infoBox {
+    position: relative;
+    background: #ffffff;              /* 하나의 배경 */
+    border: 1px solid #e5e7eb;        /* 얇은 단일 테두리 */
+    border-radius: 16px;              /* 부드러운 라운드 */
+    padding: 18px 20px 24px;
+    max-width: 300px;
+    font-size: 14px;
+    line-height: 1.65;
+    color: #374151;
+    font-family: "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    text-align: left;
+    box-shadow: none;                 /* ✅ 겹배경 원인 제거 */
+    overflow: visible;                /* 꼬리가 밖으로 나와도 안 잘림 */
+  }
+  
+  /* 닫기 버튼 */
+  .infoBox .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 28px;
+    height: 28px;
+    border: none;
+    background: transparent;
+    border-radius: 8px;
+    font-size: 18px;
+    color: #9ca3af;
+    cursor: pointer;
+    line-height: 28px;
+    text-align: center;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.08s ease;
+  }
+  .infoBox .close-btn:hover {
+    background: #f3f4f6;
+    color: #4ade80;
+  }
+  
+  /* 제목 / 본문 */
+  .infoBox .title {
+    text-align: center;
+    font-size: 17px;
+    font-weight: 700;
+    color: #16a34a;
+    margin: 6px 0 14px;
+    letter-spacing: -0.3px;
+  }
+  .infoBox .label {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 3px;
+    font-weight: 600;
+    color: #374151;
+  }
+  .infoBox .value {
+    display: block;
+    color: #4b5563;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
+  
+  /* 칩 형태 리스트 */
+  .infoBox ul {
+    margin-top: 10px;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .infoBox li {
+    background: #bbf7d0;
+    border: 1px solid #86efac;
+    color: #065f46;
+    font-size: 12.5px;
+    padding: 5px 9px;
+    border-radius: 9999px;
+    font-weight: 500;
+    line-height: 1.3;
+  }
+  
+  /* ▼ 역삼각형 꼬리 (중앙). 박스 테두리와 자연스럽게 이어지게 2중 삼각형 사용 */
+  .infoBox .tail {
+    position: absolute;
+    left: 50%;
+    bottom: -12px;                    /* 카드 바깥으로 */
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-top: 12px solid #e5e7eb;   /* 바깥 테두리 색 */
+    z-index: 0;
+  }
+  .infoBox .tail::after {
+    content: "";
+    position: absolute;
+    left: -11px;
+    top: -12px;                       /* 꼭짓점 맞추기 */
+    width: 0;
+    height: 0;
+    border-left: 11px solid transparent;
+    border-right: 11px solid transparent;
+    border-top: 11px solid #ffffff;   /* 내부 채움 = 박스 배경색 */
+  }
+  
+  /* 반응형 */
+  @media (max-width: 360px) {
+    .infoBox { max-width: 260px; padding: 16px 16px 20px; border-radius: 14px; }
+    .infoBox .title { font-size: 16px; }
+  }
+  
+  /* 다크모드에서도 '화이트 박스' 유지 */
+  @media (prefers-color-scheme: dark) {
+    .infoBox { background: #ffffff; color: #374151; border-color: #d1d5db; }
+    .infoBox .tail { border-top-color: #d1d5db; }
+    .infoBox .tail::after { border-top-color: #ffffff; }
+  }
+  

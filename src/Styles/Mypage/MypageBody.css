@@ -1,11 +1,8 @@
-.My-Body{
-border: 3px solid hsl(102, 66%, 44%);
-padding:3rem;
-display: flex;
+.My-Body {
+  border: 3px solid hsl(102, 66%, 44%);
+  padding: 3rem;
+  display: flex;
   justify-content: center;
-  flex-direction: column; 
+  flex-direction: column;
   align-items: center;
-  gap: 1rem;
-   
-
 }

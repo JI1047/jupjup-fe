@@ -47,6 +47,7 @@ function UserProfile () {
             <p>{userData.phone}</p>
           </div>
           <div className="user-points">
+            <p></p>
             <p>보유 포인트</p>
             <h2>24P</h2>
           </div>

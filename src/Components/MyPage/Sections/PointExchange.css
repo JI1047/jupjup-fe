@@ -1,56 +1,66 @@
+/* ===== PointExchange.css (refined) ===== */
 .History-back{
-/*border: 3px solid hsl(102, 66%, 44%);*/
-width: 38rem;
-
+  width: min(38rem, 100%);
+  margin: 12px auto 24px;
 }
 
-.point-history-section {
-  background-color: #c7e4d0;
-  border-radius: 10px;
-  display: flex;
+.point-history-section{
+  background:#F2E8CF;
+  border: 1px solid #e5e7eb;
+  border-radius:16px;
+  padding:16px;
+  display:flex;
   flex-direction: column;
-  gap: 0.5rem;
-  padding: 1rem;
-
+  gap: 8px;
 }
 
-.point-box {
-  display: flex;
-  justify-content: space-between;
-  font-size: 1rem;
-  padding: 0.5rem 0;
+/* 포인트 요약 카드 */
+.point-box2{
+  display:flex;
+  align-items:center;
+  justify-content: space-around;
+  padding:12px 14px;
+  border:1px solid #e5e7eb;
+  border-radius:12px;
+  background:#A7C957;
 }
 
-.Exchange-buttons {
-  display: flex;
-  gap: 1rem;
-  margin-top: 0.5rem;
-  justify-content: end;
-
-  
+.point-box2 p{
+  margin:0;
+  font-size: 15px;
+  color:#374151;
+  font-weight:600;
 }
-.check-history-button {
-  margin-top: 0.5rem;
-  align-self: flex-end;
-  padding:1rem 1rem;
-  background-color: #444;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
+.point-box2 strong{
+  font-size:23px;
+  color:#16a34a;
 }
 
-.Exchange-buttons button {
-  padding: 0.5rem 2rem;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-   background-color: #ffffff;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+/* 버튼 그룹 */
+.Exchange-buttons2{
+  display:flex;
+  justify-content: space-around;
+  margin-top: 4px;
+  gap: 10px;
 }
 
-.Exchange-buttons button:hover {
-  background-color: #b3b3b3;  
-  transform: translateY(-2px); 
+.Exchange-buttons2 button{
+  padding:10px 14px;
+  background:#A7C957;
+  border:1px solid #e5e7eb;
+  border-radius:10px;
+  cursor:pointer;
+  font-size:14px;
+  font-weight: bold;
+  color:#374151;
+  width: 50%;
+  transition: transform .12s ease, background-color .2s ease, border-color .2s ease, box-shadow .2s ease;
 }
-
+.Exchange-buttons2 button:hover{
+  background:#f9fafb;
+  border-color:#d1d5db;
+  transform: translateY(-1px);
+}
+.Exchange-buttons2 button:active{
+  transform: translateY(0);
+}
