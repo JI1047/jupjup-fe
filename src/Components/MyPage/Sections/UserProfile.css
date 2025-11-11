@@ -1,30 +1,45 @@
 /* ===== UserProfile.css (refined) ===== */
 .UserProfile{
-  width: min(38rem, 100%);
+  width: 100%;
   margin: 0 auto;
 }
 
 .user-info-section{
-  background: #F2E8CF;
-  border: 1px solid #e5e7eb;        /* 밝은 경계선 */
-  border-radius: 16px;
-  padding: 16px;
+  background: transparent;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease;
+}
+
+.user-info-section:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 /* 상단: 프로필 아바타 + 기본 정보 + 포인트 */
 .user-info-header{
   display: grid;
-  grid-template-columns: 84px 1fr auto;
+  grid-template-columns: 1fr auto;
+  align-items: stretch;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.user-profile-area {
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 16px;
+  justify-content: center;
+  gap: 1.5rem;
 }
 
 .user-profile{
-  width: 84px;
-  height: 84px;
+  width: 160px;
+  height: 160px;
   border-radius: 50%;
-  overflow: hidden;                 /* 직각 모서리 숨김 */
-  border: 1px solid #e5e7eb;
+  overflow: hidden;
+  border: 4px solid #1da846;
   background: #f8fafc;
 }
 
@@ -36,77 +51,94 @@
 }
 
 .user-details{
-  display: grid;
-  gap: 6px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
+  gap: 0.5rem;
+  text-align: center;
 }
 
-.user-details h1{
-  font-size: 18px;
+.user-details h3{
+  font-size: 1.75rem;
   font-weight: 700;
-  color:#111827;
+  color: #111827;
   margin: 0;
 }
 
 .user-details p{
-  font-size: 14px;
-  color:#4b5563;
+  font-size: 1rem;
+  color: #6b7280;
   margin: 0;
 }
 
 .user-points{
-  text-align: right;
+  text-align: center;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
-  margin-right: 16px;
-
+  background: #1da846;
+  padding: 3rem 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(29, 168, 70, 0.2);
+  min-width: 240px;
 }
 
 .user-points p {
-  font-weight: bold;
-  padding-top: 20px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 0.75rem 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-.user-points h3{
-  font-size: 13px;
-  color:#6b7280;
-  margin: 0 0 4px;
-  font-weight:600;
-}
 .user-points h2{
-  font-size: 60px;
-  color:#16a34a; /* 포인트 강조 */
+  font-size: 4rem;
+  color: #ffffff;
   margin: 0;
   font-weight: 800;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 /* 버튼 영역 */
 .user-buttons{
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 14px;
+  gap: 1rem;
+  margin-top: 9rem;
+  justify-content: center;
 }
 
 .user-buttons button{
-  padding: 10px 14px;
-  background:#A7C957;
-  border:1px solid #e5e7eb;
-  border-radius: 10px;
-  cursor:pointer;
-  font-size: 14px;
-  color:#374151;
-  transition: transform .12s ease, background-color .2s ease, border-color .2s ease, box-shadow .2s ease;
+  flex: 1;
+  min-width: 140px;
+  padding: 0.875rem 1.5rem;
+  background: transparent;
+  border: 2px solid #1da846;
+  border-radius: 12px;
+  color: #1da846;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.user-buttons button:hover{
+  background: #1da846;
+  color: #1da846;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(29, 168, 70, 0.25);
+}
+
+.user-buttons button:active{
+  transform: translateY(0);
 }
 
 .user-buttons button:hover{
   background:#f9fafb;
-  border-color:#d1d5db;
+  border-color:#1da846;
   transform: translateY(-1px);
 }
 
