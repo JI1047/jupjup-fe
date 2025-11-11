@@ -1,161 +1,156 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
-// ── Icons (lucide-react)
 import {
   User,
   Clock,
   Coins,
   LogOut,
-  LogIn,
   Calculator,
-  Key,
   Info,
-  ArrowLeftRight as Exchange,
+  ArrowLeftRight,
 } from "lucide-react";
-
-// ── UI atoms / layout (프로젝트 내 컴포넌트 사용)
 import {
   Sidebar,
-  SidebarHeader,
   SidebarContent,
   SidebarFooter,
   SidebarGroup,
-  SidebarGroupLabel,
   SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarHeader,
   SidebarMenu,
-  SidebarMenuItem,
   SidebarMenuButton,
-} from "./ui/sidebar"; // 존재하지 않으면 프로젝트의 실제 경로로 조정 필요
-import { Avatar, AvatarImage, AvatarFallback } from "./ui/avatar";
+  SidebarMenuItem,
+} from "./ui/sidebar";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Separator } from "./ui/separator";
 import { Button } from "./ui/button";
-
-// ── Recent search & Map hook (네 작업본 유지)
-import { useRecentSearch } from "./RecentSearch.jsx"; // 존재하지 않으면 스텁/구현 필요
-import { MapView } from "./MapView"; // 존재하지 않으면 스텁/구현 필요
-
-// ── Styles
-// NOTE: 프로젝트 구조에 맞춰 경로를 조정하세요.
 import "../../Styles/Main/mapSidebar.css";
 
-export default function MapSidebar() {
+const menuItems = [
+  {
+    title: "마이페이지",
+    url: "/mypage",
+    icon: User,
+  },
+  {
+    title: "포인트",
+    url: "/points",
+    icon: Coins,
+    badge: "25P",
+  },
+  {
+    title: "재활용품 계산",
+    url: "/calPage",
+    icon: Calculator,
+  },
+  {
+    title: "소개",
+    url: "/start",
+    icon: Info,
+  },
+  {
+    title: "환전신청",
+    url: "/MyPage/ExchangeRequest",
+    icon: ArrowLeftRight,
+  },
+];
+
+const recentSearches = [
+  { title: "안양3동", url: "/search/anyang3" },
+  { title: "안양4동", url: "/search/anyang4" },
+  { title: "안양5동", url: "/search/anyang5" },
+];
+
+function AppSidebar() {
   const navigate = useNavigate();
+  const [user, setUser] = useState(null); // ✅ 사용자 상태 저장
 
-  // ── 로그인/사용자 상태 (팀원본의 기능 통합)
-  const [token, setToken] = useState(null);
-  const [user, setUser] = useState(null);
-  const [loadingUser, setLoadingUser] = useState(true);
+  // 최근 검색 클릭
+  const handleRecentSearchClick = (text) => {
+    console.log("최근 검색:", text);
+  };
 
+  // 로그아웃 처리
+  const handleLogout = () => {
+    localStorage.removeItem("accessToken");
+    window.location.href = "/Main"; // ← 완전 리로드
+  };
+
+  // ✅ 로그인 사용자 정보 가져오기
   useEffect(() => {
-    const t = localStorage.getItem("token") || localStorage.getItem("accessToken");
-    setToken(t);
-    if (!t) {
-      setLoadingUser(false);
-      return;
-    }
+    const fetchUserInfo = async () => {
+      const token = localStorage.getItem("accessToken");
+      if (!token) return; // 토큰 없으면 실행 안함
 
-    (async () => {
       try {
-        const res = await axios.get("/api/auth/me", {
-          headers: { Authorization: `Bearer ${t}` },
+        const response = await axios.get("http://13.209.202.27:8080/api/auth/me", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          withCredentials: true, // ✅ 추가
         });
-        setUser(res.data);
-      } catch (e) {
-        console.warn("/api/auth/me failed", e);
-        setUser(null);
-      } finally {
-        setLoadingUser(false);
+        setUser(response.data);
+      } catch (error) {
+        console.error("사용자 정보 요청 실패:", error);
       }
-    })();
+    };
+
+    fetchUserInfo();
   }, []);
 
-  // ── 메뉴 정의 (네 작업본의 경로/아이콘 유지 + 포인트 배지 동적화)
-  const pointsBadge = user?.point != null ? `${user.point}P` : undefined;
-  const menuItems = [
-    { title: "마이페이지", url: "/mypage", icon: User },
-    { title: "포인트", url: "/points", icon: Coins, badge: pointsBadge || "25P" },
-    { title: "재활용품 계산", url: "/calPage", icon: Calculator },
-    { title: "인증코드 입력", url: "/auth", icon: Key },
-    { title: "소개", url: "/start", icon: Info },
-    { title: "환전신청", url: "/MyPage/ExchangeRequest", icon: Exchange },
-  ];
-
-  // ── 최근 검색 (네 작업본 유지)
-  const { recentSearches = [] } = useRecentSearch();
-  const handleRecentSearchClick = (text) => {
-    try {
-      if (MapView?.moveToMarkerByName) MapView.moveToMarkerByName(text);
-    } catch (e) {
-      console.warn("MapView.moveToMarkerByName not available", e);
-    }
-  };
-
-  // ── 내비게이션 & 인증 버튼
-  const goToPage = (path) => navigate(path);
-  const handleLogout = () => {
-    try {
-      localStorage.removeItem("token");
-      localStorage.removeItem("accessToken");
-      setUser(null);
-      setToken(null);
-      // 로그인 화면으로 가거나, 그대로 새로고침해서 전역 상태 초기화
-      navigate("/login");
-      window.location.reload();
-    } catch (_) {
-      // ignore
-    }
-  };
-
-  // ── UI ───────────────────────────────────────────────────────────────────
   return (
-    <Sidebar className="map-sidebar">
-      {/* Header: 로고 + 프로필 섹션 */}
+    <Sidebar>
       <SidebarHeader>
-        <div className="brand">
-          <img src="/logo.png" alt="logo" className="brand-logo" />
-          <span className="brand-name">CHAJAJJO</span>
-        </div>
-
-        {/* 로그인 상태일 때만 프로필 정보 표시 */}
-        {token && user ? (
-          <div className="profile-section-header">
-            {/* 프로필 사진 (80px, 가운데 정렬) */}
-            <Avatar className="profile-avatar-large">
-              <AvatarImage src="/profile.png" alt={user?.name || "user"} />
-              <AvatarFallback>
-                {(user?.name || "U").slice(0, 1)}
-              </AvatarFallback>
-            </Avatar>
-            {/* 사용자 이름 */}
-            <div className="profile-name-header">{user.name}</div>
-            {/* 사용자 이메일 */}
-            <div className="profile-email-header">{user.email}</div>
+        <div className="logo-container">
+          <div className="logo-icon">
+            <img src="/logo.png" alt="Logo" className="icon-medium" />
           </div>
-        ) : null}
+          <span className="brand-title">RECYCLING</span>
+        </div>
       </SidebarHeader>
 
-      <Separator />
-
       <SidebarContent>
-        {/* Menu 그룹 */}
+        <SidebarGroupContent>
+          <SidebarMenu>
+            {menuItems.map((item) => (
+              <SidebarMenuItem key={item.title}>
+                <SidebarMenuButton asChild>
+                  <button
+                    className="sidebar-menu-button"
+                    onClick={() => navigate(item.url)}
+                  >
+                    <div className="menu-item-content">
+                      <div className="menu-item-left">
+                        <item.icon className="icon-small" />
+                        <span>{item.title}</span>
+                      </div>
+                      {item.badge && <span className="badge">{item.badge}</span>}
+                    </div>
+                  </button>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            ))}
+          </SidebarMenu>
+        </SidebarGroupContent>
+
         <SidebarGroup>
+          <SidebarGroupLabel className="left-align-label">
+            최근 검색
+          </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {menuItems.map((item) => (
-                <SidebarMenuItem key={item.title}>
+              {recentSearches.map((search) => (
+                <SidebarMenuItem key={search.title}>
                   <SidebarMenuButton asChild>
                     <button
-                      type="button"
                       className="sidebar-menu-button"
-                      onClick={() => goToPage(item.url)}
+                      onClick={() => handleRecentSearchClick(search.title)}
                     >
-                      <span className="menu-item-left">
-                        <item.icon size={18} />
-                        <span className="menu-item-text">{item.title}</span>
-                      </span>
-                      {item.badge && <span className="menu-badge">{item.badge}</span>}
+                      <div className="menu-item-left">
+                        <Clock className="icon-small" />
+                        <span className="text-small">{search.title}</span>
+                      </div>
                     </button>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
@@ -163,62 +158,46 @@ export default function MapSidebar() {
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
-
-        <Separator />
-
-        {/* 최근 검색 그룹 */}
-        <SidebarGroup>
-          <SidebarGroupLabel className="recent-label">
-            <Clock size={14} style={{ marginRight: 6 }} /> 최근 검색
-          </SidebarGroupLabel>
-          <SidebarGroupContent>
-            <ul className="recent-list">
-              {recentSearches.length ? (
-                recentSearches.map((text, idx) => (
-                  <li key={`${text}-${idx}`}>
-                    <button
-                      type="button"
-                      className="recent-item"
-                      onClick={() => handleRecentSearchClick(text)}
-                    >
-                      <Clock size={14} />
-                      <span className="recent-text">{text}</span>
-                    </button>
-                  </li>
-                ))
-              ) : (
-                <li className="recent-empty">최근 검색이 없습니다</li>
-              )}
-            </ul>
-          </SidebarGroupContent>
-        </SidebarGroup>
       </SidebarContent>
 
-      {/* Footer: 로그인/로그아웃 */}
+      {/* ✅ 사용자 정보 표시 부분 */}
       <SidebarFooter>
         <Separator />
-        {/* 로그인 상태에 따라 다른 UI 표시 */}
-        {token && user ? (
-          /* 로그인 상태: 로그아웃 버튼만 표시 */
-          <Button
-            variant="outline"
-            className="btn-logout"
-            onClick={handleLogout}
-            disabled={loadingUser}
-          >
-            <LogOut className="icon-small" />
-            로그아웃
-          </Button>
+        {localStorage.getItem("accessToken") && user ? (
+          // 로그인 상태
+          <>
+            <div className="profile-section">
+              <div className="profile-info">
+                <Avatar className="avatar-md">
+                  <AvatarImage src="/profile.png" />
+                  <AvatarFallback>
+                    {user.name ? user.name.charAt(0) : "U"}
+                  </AvatarFallback>
+                </Avatar>
+                <div className="profile-details">
+                  <p className="text-small text-green truncate">
+                    {user.name}
+                  </p>
+                  <p className="text-small text-gray truncate">
+                    {user.email}
+                  </p>
+                </div>
+              </div>
+            </div>
+            <Button variant="outline" className="btn-logout" onClick={handleLogout}>
+              <LogOut className="icon-small" />
+              로그아웃
+            </Button>
+          </>
         ) : (
-          /* 비로그인 상태: "로그인 필요" 문구 + 로그인 버튼 표시 */
+          // 비로그인 상태
           <div className="login-required-section">
             <p className="login-required-text">로그인 필요</p>
             <Button
               variant="outline"
               className="btn-login"
-              onClick={() => navigate("/login")} 
+              onClick={() => (window.location.href = "/login")}
             >
-              <LogIn className="icon-small" />
               로그인
             </Button>
           </div>
@@ -227,3 +206,5 @@ export default function MapSidebar() {
     </Sidebar>
   );
 }
+
+export default AppSidebar;

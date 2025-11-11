@@ -1,15 +1,21 @@
 /* ===== ResourceInfo.css (refined) ===== */
 .ResourceInfo{
-  width: min(38rem, 100%);
-  margin: 12px auto 0;
+  width: 100%;
+  margin: 0;
 }
 
-.resource-info-section, /* 혹시 쓰일 수 있는 기존 이름 보존 */
+.resource-info-section,
 .point-history{
-  background:#F2E8CF;
+  background: transparent;
   border: 1px solid #e5e7eb;
-  border-radius:16px;
-  padding:16px;
+  border-radius: 20px;
+  padding: 1.75rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease;
+}
+
+.point-history:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 /* 상단 타이틀 영역(있다면) */
@@ -22,53 +28,65 @@
 
 /* 요약 박스들 */
 .point-box1{
-  display:flex;
-  align-items:center;
+  display: flex;
+  align-items: center;
   justify-content: space-between;
-  padding:12px 14px;
-  border:1px solid #e5e7eb;
-  border-radius:12px;
-  background:#A7C957;
+  padding: 1rem 1.25rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #f9fafb;
+  transition: all 0.3s ease;
 }
 
-.point-box1 + .point-box1{ margin-top:8px; }
+.point-box1:hover {
+  background: #f3f4f6;
+  border-color: #047857;
+}
+
+.point-box1 + .point-box1{ 
+  margin-top: 0.75rem; 
+}
 
 .point-box1 p{
-  margin:0;
-  font-size:20px;
-  color:#374151;
-  font-weight:600;
+  margin: 0;
+  font-size: 0.95rem;
+  color: #374151;
+  font-weight: 600;
 }
 
 .point-box1 strong{
-  font-size:25px;
-  color:#16a34a;
+  font-size: 1.75rem;
+  color: #047857;
+  font-weight: 700;
 }
 
 /* 하단 버튼(공통) */
 .Exchange-buttons1{
-  display:flex;
-  justify-content: end;
-  gap:8px;
-  margin-top:12px;
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1rem;
 }
 
 .Exchange-buttons1 button{
-  padding:10px 14px;
-  background:#A7C957;
-  border:1px solid #e5e7eb;
-  border-radius:10px;
-  cursor:pointer;
-  font-size:14px;
-  font-weight: bold;
-  color:#374151;
-  transition: transform .12s ease, background-color .2s ease, border-color .2s ease, box-shadow .2s ease;
+  flex: 1;
+  padding: 0.875rem 1.25rem;
+  background: #1da846;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
+
 .Exchange-buttons1 button:hover{
-  background:#f9fafb;
-  border-color:#d1d5db;
-  transform: translateY(-1px);
+  background: #1da846;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(29, 168, 70, 0.3);
 }
+
 .Exchange-buttons1 button:active{
   transform: translateY(0);
 }
