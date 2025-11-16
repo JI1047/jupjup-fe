@@ -18,6 +18,14 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
+.point-history .section-title {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #111827;
+  margin: 0 0 1rem 0;
+  text-align: center;
+}
+
 /* 상단 타이틀 영역(있다면) */
 .text-box h1{
   font-size: 18px;
@@ -29,8 +37,8 @@
 /* 요약 박스들 */
 .point-box1{
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  align-items: self-start;
+  justify-content: flex-start;
   padding: 1rem 1.25rem;
   border: 1px solid #e5e7eb;
   border-radius: 12px;
@@ -60,33 +68,30 @@
   font-weight: 700;
 }
 
-/* 하단 버튼(공통) */
-.Exchange-buttons1{
-  display: flex;
-  justify-content: center;
-  gap: 0.75rem;
-  margin-top: 1rem;
+/* 안내 컨텐츠 */
+.info-content {
+  padding: 1.25rem;
+  background: #f9fafb;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
 }
 
-.Exchange-buttons1 button{
-  flex: 1;
-  padding: 0.875rem 1.25rem;
-  background: #1da846;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  font-weight: 600;
-  font-size: 0.95rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
+.info-content p {
+  margin: 0;
+  padding: 0.5rem 0;
+  color: #4b5563;
+  font-size: 1.06rem;
+  line-height: 1.6;
+  text-align: left;
 }
 
-.Exchange-buttons1 button:hover{
-  background: #1da846;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(29, 168, 70, 0.3);
+.info-content p:not(:last-child) {
+  border-bottom: 1px solid #e5e7eb;
 }
 
-.Exchange-buttons1 button:active{
-  transform: translateY(0);
+.info-content p::before {
+  content: '•';
+  color: #047857;
+  font-weight: bold;
+  margin-right: 0.75rem;
 }

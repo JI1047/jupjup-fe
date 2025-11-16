@@ -20,6 +20,14 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 1rem 0;
+  text-align: center;
+}
+
 /* 포인트 요약 카드 */
 .point-box2{
   display: flex;
@@ -60,32 +68,31 @@
   font-weight: 700;
 }
 
-/* 버튼 그룹 */
-.Exchange-buttons2{
-  display: flex;
-  gap: 0.75rem;
-  margin-top: 0.5rem;
+/* 빠른 메뉴 버튼 */
+.quick-menu-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
 }
 
-.Exchange-buttons2 button{
-  flex: 1;
-  padding: 0.875rem 1.25rem;
+.menu-btn {
+  padding: 1rem 1.5rem;
   background: #1da846;
   color: white;
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
   font-weight: 600;
   font-size: 0.95rem;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
-.Exchange-buttons2 button:hover{
-  background: #1da846;
+.menu-btn:hover {
+  background: #168a3a;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(29, 168, 70, 0.3);
 }
 
-.Exchange-buttons2 button:active{
+.menu-btn:active {
   transform: translateY(0);
 }

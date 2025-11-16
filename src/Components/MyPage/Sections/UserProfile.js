@@ -53,10 +53,18 @@ function UserProfile() {
           </div>
         </div>
         <div className="user-buttons">
-          <button>사진 변경</button>
-          <button onClick={() => navigate("/MyPage/Info")}>정보수정</button>
-          <button onClick={() => navigate("/MyPage/Poinhistory")}>
-            포인트 내역
+          <button className="profile-btn">사진 변경</button>
+          <button
+            className="profile-btn"
+            onClick={() => navigate("/MyPage/Info")}
+          >
+            정보수정
+          </button>
+          <button
+            className="profile-btn"
+            onClick={() => navigate("/MyPage/CustomerService")}
+          >
+            고객센터
           </button>
         </div>
       </section>

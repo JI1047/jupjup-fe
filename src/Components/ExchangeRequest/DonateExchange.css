@@ -33,7 +33,7 @@
   transition: all 0.2s ease;
 }
 .product-card:hover { transform: translateY(-2px); box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
-.product-card.active { border-color: #86efac; box-shadow: 0 0 0 2px rgba(134,239,172,0.4); }
+.product-card.active { border-color: #93c5fd; box-shadow: 0 0 0 2px rgba(147,197,253,0.4); }
 
 /* 이미지 크기 조절 포인트 */
 .thumb {
@@ -98,7 +98,7 @@
   font-size: 13px;
   color: #374151;
 }
-.balance-chip strong { color: #16a34a; }
+.balance-chip strong { color: #2563eb; }
 
 /* 요약/버튼 */
 .summary-bar {
@@ -111,11 +111,11 @@
   border-top: 1px solid #e5e7eb;
 }
 .summary-left { font-size: 14px; color: #374151; }
-.summary-left strong { color: #16a34a; }
+.summary-left strong { color: #2563eb; }
 .summary-left .divider { margin: 0 6px; color: #d1d5db; }
 .final-btn.donate {
   padding: 10px 16px;
-  background: #16a34a;
+  background: #2563eb;
   color: #fff;
   border: none;
   border-radius: 10px;
@@ -148,7 +148,7 @@
 }
 .modal-title { font-size: 16px; font-weight: 700; color: #111827; margin-bottom: 6px; }
 .modal-balance { font-size: 14px; color: #374151; margin-bottom: 10px; }
-.modal-balance strong { color: #16a34a; }
+.modal-balance strong { color: #2563eb; }
 
 .modal-row {
   display: flex; align-items: center; gap: 10px;
@@ -173,7 +173,7 @@
 
 .modal-submit {
   width: 100%;
-  padding: 12px 14px; background:#16a34a; color:#fff;
+  padding: 12px 14px; background:#2563eb; color:#fff;
   border:none; border-radius:12px; font-weight:800; cursor:pointer;
 }
 .modal-submit:hover { filter:brightness(1.05); }
