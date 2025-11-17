@@ -1,59 +1,97 @@
+/* ===== ResourceInfo.css (refined) ===== */
 .ResourceInfo{
-  width: 38rem;
+  width: 100%;
+  margin: 0;
 }
 
-.resource-info-section {
-
-  padding: 1rem;
-  border-radius: 10px;
+.resource-info-section,
+.point-history{
+  background: transparent;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  padding: 1.75rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease;
 }
 
-.point-history {
-  background-color: #eeeeee;
-  border-radius: 10px;
+.point-history:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.point-history .section-title {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #111827;
+  margin: 0 0 1rem 0;
+  text-align: center;
+}
+
+/* 상단 타이틀 영역(있다면) */
+.text-box h1{
+  font-size: 18px;
+  font-weight: 700;
+  color:#111827;
+  margin: 0 0 10px;
+}
+
+/* 요약 박스들 */
+.point-box1{
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  padding: 1rem;
-
+  align-items: self-start;
+  justify-content: flex-start;
+  padding: 1rem 1.25rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #f9fafb;
+  transition: all 0.3s ease;
 }
 
-.point-box {
-  display: flex;
-  justify-content: space-between;
-  font-size: 1rem;
+.point-box1:hover {
+  background: #f3f4f6;
+  border-color: #047857;
+}
+
+.point-box1 + .point-box1{ 
+  margin-top: 0.75rem; 
+}
+
+.point-box1 p{
+  margin: 0;
+  font-size: 0.95rem;
+  color: #374151;
+  font-weight: 600;
+}
+
+.point-box1 strong{
+  font-size: 1.75rem;
+  color: #047857;
+  font-weight: 700;
+}
+
+/* 안내 컨텐츠 */
+.info-content {
+  padding: 1.25rem;
+  background: #f9fafb;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+.info-content p {
+  margin: 0;
   padding: 0.5rem 0;
+  color: #4b5563;
+  font-size: 1.06rem;
+  line-height: 1.6;
+  text-align: left;
 }
 
-.Exchange-buttons {
-  display: flex;
-  gap: 1rem;
-  margin-top: 0.5rem;
-  justify-content: end;
-
-  
-}
-.check-history-button {
-  margin-top: 0.5rem;
-  align-self: flex-end;
-  padding:1rem 1rem;
-  background-color: #444;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
+.info-content p:not(:last-child) {
+  border-bottom: 1px solid #e5e7eb;
 }
 
-.Exchange-buttons button {
-  padding: 0.5rem 2rem;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-   background-color: #ffffff;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.Exchange-buttons button:hover {
-  background-color: #b3b3b3;  
-  transform: translateY(-2px); 
+.info-content p::before {
+  content: '•';
+  color: #047857;
+  font-weight: bold;
+  margin-right: 0.75rem;
 }

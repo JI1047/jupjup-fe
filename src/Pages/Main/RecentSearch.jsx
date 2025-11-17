@@ -6,16 +6,18 @@ const RecentSearchContext = createContext();
 // ✅ 2. Provider 컴포넌트
 export function RecentSearchProvider({ children }) {
   const [recentSearches, setRecentSearches] = useState([]);
+  const [currentSearch, setCurrentSearch] = useState("현 위치"); // 현재 검색어 상태 추가
 
   const addRecentSearch = (keyword) => {
     setRecentSearches((prev) => {
       const updated = [keyword, ...prev.filter((item) => item !== keyword)];
       return updated.slice(0, 5); // 최대 5개 유지
     });
+    setCurrentSearch(keyword); // 현재 검색어 업데이트
   };
 
   return (
-    <RecentSearchContext.Provider value={{ recentSearches, addRecentSearch }}>
+    <RecentSearchContext.Provider value={{ recentSearches, addRecentSearch, currentSearch }}>
       {children}
     </RecentSearchContext.Provider>
   );

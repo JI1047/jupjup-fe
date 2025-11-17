@@ -6,23 +6,35 @@ const PointExchange = () => {
 
   return (
     <div className="History-back">
-         <section className="point-history-section">
-        <div className="point-box">
-          <p>환경 신청 포인트</p>
-          <strong>1P</strong>
-        </div>
-        <div className="point-box">
-          <p>환경 완료 리워드</p>
-          <strong>1P</strong>
-        </div>
-        <div className="Exchange-buttons">
-        <button onClick={() => navigate("/MyPage/ExchangeRequest")}>환전신청</button>
-        <button onClick={() => navigate("/MyPage/ExchangeHistory")}>환전내역</button>
+      <section className="point-history-section">
+        <h3 className="section-title">빠른 메뉴</h3>
+        <div className="quick-menu-buttons">
+          <button
+            className="menu-btn"
+            onClick={() => navigate("/MyPage/Poinhistory")}
+          >
+            포인트 내역
+          </button>
+          <button
+            className="menu-btn"
+            onClick={() => navigate("/MyPage/ExchangeRequest")}
+          >
+            환전
+            <br />
+            신청
+          </button>
+          <button
+            className="menu-btn"
+            onClick={() => navigate("/MyPage/ExchangeHistory")}
+          >
+            환전
+            <br />
+            내역
+          </button>
         </div>
       </section>
     </div>
-
-     );
+  );
 };
-   
+
 export default PointExchange;
