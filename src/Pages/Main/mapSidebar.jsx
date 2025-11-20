@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useRecentSearch } from "./RecentSearch.jsx";
 import {
   User,
   Clock,
@@ -56,15 +57,10 @@ const menuItems = [
   },
 ];
 
-const recentSearches = [
-  { title: "안양3동", url: "/search/anyang3" },
-  { title: "안양4동", url: "/search/anyang4" },
-  { title: "안양5동", url: "/search/anyang5" },
-];
-
 function AppSidebar() {
   const navigate = useNavigate();
   const [user, setUser] = useState(null); // ✅ 사용자 상태 저장
+  const { recentSearches } = useRecentSearch(); // 최근 검색어 가져오기
 
   // 최근 검색 클릭
   const handleRecentSearchClick = (text) => {
@@ -140,21 +136,25 @@ function AppSidebar() {
           </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {recentSearches.map((search) => (
-                <SidebarMenuItem key={search.title}>
-                  <SidebarMenuButton asChild>
-                    <button
-                      className="sidebar-menu-button"
-                      onClick={() => handleRecentSearchClick(search.title)}
-                    >
-                      <div className="menu-item-left">
-                        <Clock className="icon-small" />
-                        <span className="text-small">{search.title}</span>
-                      </div>
-                    </button>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
+              {recentSearches.length > 0 ? (
+                recentSearches.map((searchText, idx) => (
+                  <SidebarMenuItem key={`${searchText}-${idx}`}>
+                    <SidebarMenuButton asChild>
+                      <button
+                        className="sidebar-menu-button"
+                        onClick={() => handleRecentSearchClick(searchText)}
+                      >
+                        <div className="menu-item-left">
+                          <Clock className="icon-small" />
+                          <span className="text-small">{searchText}</span>
+                        </div>
+                      </button>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))
+              ) : (
+                <li className="recent-empty">최근 검색이 없습니다</li>
+              )}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

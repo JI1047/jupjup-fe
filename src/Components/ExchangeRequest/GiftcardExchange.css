@@ -43,8 +43,8 @@
     box-shadow: 0 2px 6px rgba(0,0,0,0.06);
   }
   .product-card.active {
-    border-color: #86efac;
-    box-shadow: 0 0 0 2px rgba(134,239,172,0.4);
+    border-color: #93c5fd;
+    box-shadow: 0 0 0 2px rgba(147,197,253,0.4);
   }
   
   /* ===============================
@@ -86,7 +86,7 @@
   }
   .product-price {
     font-size: 13px;
-    color: #065f46;
+    color: #1e40af;
     margin-top: 2px;
   }
   
@@ -153,7 +153,7 @@
     color: #374151;
   }
   .summary-left strong {
-    color: #16a34a;
+    color: #2563eb;
   }
   .summary-left .divider {
     margin: 0 6px;
@@ -161,7 +161,7 @@
   }
   .final-btn {
     padding: 10px 16px;
-    background: #16a34a;
+    background: #2563eb;
     color: #fff;
     border: none;
     border-radius: 10px;

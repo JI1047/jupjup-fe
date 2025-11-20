@@ -37,13 +37,17 @@ export function MapView() {
         const res = await fetch(BACKEND_URL);
         const data = await res.json();
 
-        const imageSrc =
-          "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+        const imageSrc = `data:image/svg+xml;utf8,${encodeURIComponent(`
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="50" viewBox="0 0 40 50">
+            <path fill="#16a34a" stroke="#ffffff" stroke-width="2" d="M20 0C9 0 0 9 0 20c0 11 20 30 20 30s20-19 20-30C40 9 31 0 20 0z"/>
+            <circle cx="20" cy="20" r="7" fill="white"/>
+          </svg>
+        `)}`;
 
         window.infowindows = {};
 
         const newMarkerData = data.map((pos, index) => {
-          const imageSize = new window.kakao.maps.Size(24, 35);
+          const imageSize = new window.kakao.maps.Size(40, 50);
           const markerImage = new window.kakao.maps.MarkerImage(
             imageSrc,
             imageSize
@@ -72,10 +76,10 @@ export function MapView() {
             <div class="value">${pos.lotAddress ?? "-"}</div>
             <div class="label">연락처:</div>
             <div class="value">${pos.tel ?? "-"}</div>
-            <div class="label">설명:</div>
-            <div class="value">${pos.description ?? "-"}</div>
-            <div class="label">수거 항목:</div>
-            ${itemListHtml}
+            <div class="items-section">
+              <div class="items-label">수거 항목</div>
+              ${itemListHtml}
+            </div>
             <div class="tail"></div>
           </div>`;
 
