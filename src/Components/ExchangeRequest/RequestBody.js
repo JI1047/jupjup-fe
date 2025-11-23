@@ -1,64 +1,60 @@
+// RequestBody.js
 import React, { useState } from "react";
 import "../../Styles/ExchangeRequest/RequestBody.css";
+import TrashExchange from "./TrashExchange.js";
+import GiftcardExchange from "./GiftcardExchange.js";
+import DonateExchange from "./DonateExchange.js";
 
-const RequestBody = () => {
-  const [option, setOption] = useState("bongtoo");
+export default function RequestBody({ balance = 12000 }) {
+  const [selectedOption, setSelectedOption] = useState("trash"); // "trash" | "giftcard" | "donate"
+  const [showDetails, setShowDetails] = useState(false);
 
-  const options = [
-    {
-      id: "bongtoo",
-      label: (
-        <>
-          중앙제 봉투로 교환
-          <span className="subtext"> *1000P 당 종량제 1개 지급됩니다</span>
-        </>
-      ),
-    },
-    { id: "giftcard", label: "상품권으로 교환" },
-    { id: "index", label: "Index" },
-  ];
+  const onSubmit = () => {
+    setShowDetails(true);
+  };
 
   return (
-    <div className="requestbody">
-    <div className="exchange-wrap">
+    <div className="RequestBody">
       {/* 보유 포인트 */}
-      <div className="points-row">
-        <div className="points-title">보유 포인트</div>
-        <div className="points-value">
-          1,500 <span>Point</span>
-        </div>
+      <div className="balance-box">
+        <span className="label">보유 포인트</span>
+        <strong className="value">{balance.toLocaleString()} P</strong>
       </div>
-      <hr className="divider" />
- 
-        <button className="policy-link" type="button">
-        *포인트 교환 정책 자세히 알아보기 →
-      </button>
 
-      {/* 옵션 */}
+      {/* 옵션 라디오 */}
       <div className="options">
-        {options.map(({ id, label }) => (
-          <label key={id} className={`option ${option === id ? "active" : ""}`}>
-            <input
-              type="radio"
-              name="exchange-option"
-              value={id}
-              checked={option === id}
-              onChange={() => setOption(id)}
-            />
-            <span className="radio-visual" aria-hidden />
-            <span className="option-label">{label}</span>
-          </label>
-        ))}
+        <label className={`option ${selectedOption === "trash" ? "active" : ""}`}>
+          <input type="radio" name="exchange" value="trash"
+            checked={selectedOption === "trash"} onChange={() => setSelectedOption("trash")} />
+          <span className="radio-visual" aria-hidden />
+          <span className="option-text">종량제 봉투 교환</span>
+        </label>
+
+        <label className={`option ${selectedOption === "giftcard" ? "active" : ""}`}>
+          <input type="radio" name="exchange" value="giftcard"
+            checked={selectedOption === "giftcard"} onChange={() => setSelectedOption("giftcard")} />
+          <span className="radio-visual" aria-hidden />
+          <span className="option-text">상품권 교환</span>
+        </label>
+
+        <label className={`option ${selectedOption === "donate" ? "active" : ""}`}>
+          <input type="radio" name="exchange" value="donate"
+            checked={selectedOption === "donate"} onChange={() => setSelectedOption("donate")} />
+          <span className="radio-visual" aria-hidden />
+          <span className="option-text">기부</span>
+        </label>
       </div>
 
-    
+      <button className="submit-btn" onClick={onSubmit}>포인트 교환 신청</button>
 
-      {/* 제출 버튼 */}
-      <button className="submit-btn" type="button">
-        포인트 교환 신청
-      </button>
-    </div>
+      {/* 선택된 상세 파트 */}
+      {showDetails && (
+        <>
+          {selectedOption === "trash" && <TrashExchange balance={balance} />}
+          {selectedOption === "giftcard" && <GiftcardExchange balance={balance} />}
+          {selectedOption === "donate" && <DonateExchange balance={balance} />}
+        </>
+      )}
     </div>
   );
 }
-export default RequestBody;

@@ -1,15 +1,15 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import {
   User,
   Clock,
   Coins,
-  Mail,
-  Settings,
   LogOut,
   Calculator,
-  Key,
+  Info,
+  ArrowLeftRight,
 } from "lucide-react";
-
 import {
   Sidebar,
   SidebarContent,
@@ -22,34 +22,82 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "./ui/sidebar";
-
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Separator } from "./ui/separator";
 import { Button } from "./ui/button";
-
-import { useRecentSearch } from "./RecentSearch.jsx"; // ✅ 추가
-import { MapView } from "./MapView"; // ✅ 지도 이동용
-
 import "../../Styles/Main/mapSidebar.css";
 
 const menuItems = [
-  { title: "마이페이지", url: "/mypage", icon: User },
-  { title: "포인트", url: "/points", icon: Coins, badge: "25P" },
-  { title: "재활용품 계산", url: "/calPage", icon: Calculator },
-  { title: "인증코드 입력", url: "/auth", icon: Key },
+  {
+    title: "마이페이지",
+    url: "/mypage",
+    icon: User,
+  },
+  {
+    title: "포인트",
+    url: "/points",
+    icon: Coins,
+    badge: "25P",
+  },
+  {
+    title: "재활용품 계산",
+    url: "/calPage",
+    icon: Calculator,
+  },
+  {
+    title: "소개",
+    url: "/start",
+    icon: Info,
+  },
+  {
+    title: "환전신청",
+    url: "/MyPage/ExchangeRequest",
+    icon: ArrowLeftRight,
+  },
 ];
 
-export function AppSidebar() {
+const recentSearches = [
+  { title: "안양3동", url: "/search/anyang3" },
+  { title: "안양4동", url: "/search/anyang4" },
+  { title: "안양5동", url: "/search/anyang5" },
+];
+
+function AppSidebar() {
   const navigate = useNavigate();
-  const { recentSearches } = useRecentSearch(); // ✅ 최근 검색어 Context
+  const [user, setUser] = useState(null); // ✅ 사용자 상태 저장
 
+  // 최근 검색 클릭
   const handleRecentSearchClick = (text) => {
-    MapView.moveToMarkerByName(text); // 👈 마커 위치로 지도 이동
+    console.log("최근 검색:", text);
   };
 
-  const goToPage = (path) => {
-    navigate(path);
+  // 로그아웃 처리
+  const handleLogout = () => {
+    localStorage.removeItem("accessToken");
+    window.location.href = "/Main"; // ← 완전 리로드
   };
+
+  // ✅ 로그인 사용자 정보 가져오기
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      const token = localStorage.getItem("accessToken");
+      if (!token) return; // 토큰 없으면 실행 안함
+
+      try {
+        const response = await axios.get("http://13.209.202.27:8080/api/auth/me", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          withCredentials: true, // ✅ 추가
+        });
+        setUser(response.data);
+      } catch (error) {
+        console.error("사용자 정보 요청 실패:", error);
+      }
+    };
+
+    fetchUserInfo();
+  }, []);
 
   return (
     <Sidebar>
@@ -70,16 +118,14 @@ export function AppSidebar() {
                 <SidebarMenuButton asChild>
                   <button
                     className="sidebar-menu-button"
-                    onClick={() => goToPage(item.url)}
+                    onClick={() => navigate(item.url)}
                   >
                     <div className="menu-item-content">
                       <div className="menu-item-left">
                         <item.icon className="icon-small" />
                         <span>{item.title}</span>
                       </div>
-                      {item.badge && (
-                        <span className="badge">{item.badge}</span>
-                      )}
+                      {item.badge && <span className="badge">{item.badge}</span>}
                     </div>
                   </button>
                 </SidebarMenuButton>
@@ -93,56 +139,72 @@ export function AppSidebar() {
             최근 검색
           </SidebarGroupLabel>
           <SidebarGroupContent>
-            <SidebarGroup>
-              <SidebarGroupContent>
-                <SidebarMenu>
-                  {recentSearches.map((search) => (
-                    <SidebarMenuItem key={search}>
-                      <SidebarMenuButton asChild>
-                        <button
-                          className="sidebar-menu-button"
-                          onClick={() => handleRecentSearchClick(search)}
-                        >
-                          <div className="menu-item-left">
-                            <Clock className="icon-small" />
-                            <span className="text-small">{search}</span>
-                          </div>
-                        </button>
-                      </SidebarMenuButton>
-                    </SidebarMenuItem>
-                  ))}
-                </SidebarMenu>
-              </SidebarGroupContent>
-            </SidebarGroup>
+            <SidebarMenu>
+              {recentSearches.map((search) => (
+                <SidebarMenuItem key={search.title}>
+                  <SidebarMenuButton asChild>
+                    <button
+                      className="sidebar-menu-button"
+                      onClick={() => handleRecentSearchClick(search.title)}
+                    >
+                      <div className="menu-item-left">
+                        <Clock className="icon-small" />
+                        <span className="text-small">{search.title}</span>
+                      </div>
+                    </button>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
 
+      {/* ✅ 사용자 정보 표시 부분 */}
       <SidebarFooter>
         <Separator />
-        <div className="profile-section">
-          <div className="profile-info">
-            <Avatar className="avatar-md">
-              <AvatarImage src="/빵빵이.png" />
-              <AvatarFallback>사용</AvatarFallback>
-            </Avatar>
-            <div className="profile-details">
-              <p className="text-small text-green truncate">홍길동</p>
-              <div className="email-info">
-                <Mail className="icon-small" />
-                <span className="truncate">user@example.com</span>
+        {localStorage.getItem("accessToken") && user ? (
+          // 로그인 상태
+          <>
+            <div className="profile-section">
+              <div className="profile-info">
+                <Avatar className="avatar-md">
+                  <AvatarImage src="/profile.png" />
+                  <AvatarFallback>
+                    {user.name ? user.name.charAt(0) : "U"}
+                  </AvatarFallback>
+                </Avatar>
+                <div className="profile-details">
+                  <p className="text-small text-green truncate">
+                    {user.name}
+                  </p>
+                  <p className="text-small text-gray truncate">
+                    {user.email}
+                  </p>
+                </div>
               </div>
             </div>
+            <Button variant="outline" className="btn-logout" onClick={handleLogout}>
+              <LogOut className="icon-small" />
+              로그아웃
+            </Button>
+          </>
+        ) : (
+          // 비로그인 상태
+          <div className="login-required-section">
+            <p className="login-required-text">로그인 필요</p>
+            <Button
+              variant="outline"
+              className="btn-login"
+              onClick={() => (window.location.href = "/login")}
+            >
+              로그인
+            </Button>
           </div>
-          <Button variant="ghost" size="sm" className="btn-settings">
-            <Settings className="icon-small" />
-          </Button>
-        </div>
-        <Button variant="outline" className="btn-logout">
-          <LogOut className="icon-small" />
-          로그아웃
-        </Button>
+        )}
       </SidebarFooter>
     </Sidebar>
   );
 }
+
+export default AppSidebar;

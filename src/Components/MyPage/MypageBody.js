@@ -5,12 +5,12 @@ import ResourceInfo from "./Sections/ResourceInfo";
 
 const MypageBody = () => {
   return (
-        <div className="My-Body">
-        <UserProfile />
-       <ResourceInfo />
+    <div className="My-Body">
+      <UserProfile />
+      <ResourceInfo />
       <PointExchange />
-</div>
-     );
+    </div>
+  );
 };
-   
+
 export default MypageBody;
