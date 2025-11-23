@@ -26,6 +26,10 @@ function LoginForm() {
         console.log("🔥 accessToken:", localStorage.getItem("accessToken"));
         console.log("로컬 로그인 성공:", data);
 
+
+        // 로그인 성공 시 Main 페이지로 이동
+        navigate("/Main");
+
         console.log('로컬 로그인 성공:', data);
        // ✅ 토큰 저장 후 이동 (0.2초 딜레이로 안전하게)
         setTimeout(() => {
@@ -83,8 +87,7 @@ function LoginForm() {
               회원가입하기
             </Link>
           </div>
-
-        </div>
+          </div>
         <button className="login-btn" onClick={handleLogin}>
           로그인하기
         </button>
