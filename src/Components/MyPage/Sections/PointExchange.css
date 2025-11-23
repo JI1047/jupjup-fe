@@ -1,56 +1,98 @@
+/* ===== PointExchange.css (refined) ===== */
 .History-back{
-/*border: 3px solid hsl(102, 66%, 44%);*/
-width: 38rem;
-
+  width: 100%;
+  margin: 0;
 }
 
-.point-history-section {
-  background-color: #c7e4d0;
-  border-radius: 10px;
+.point-history-section{
+  background: transparent;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  padding: 1.75rem;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  padding: 1rem;
-
+  gap: 1.25rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease;
 }
 
-.point-box {
-  display: flex;
-  justify-content: space-between;
-  font-size: 1rem;
-  padding: 0.5rem 0;
+.point-history-section:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-.Exchange-buttons {
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 1rem 0;
+  text-align: center;
+}
+
+/* 포인트 요약 카드 */
+.point-box2{
   display: flex;
+  flex-direction: column;
   gap: 1rem;
-  margin-top: 0.5rem;
-  justify-content: end;
-
-  
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
 }
-.check-history-button {
-  margin-top: 0.5rem;
-  align-self: flex-end;
-  padding:1rem 1rem;
-  background-color: #444;
+
+.point-box2 > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  transition: all 0.3s ease;
+}
+
+.point-box2 > div:hover {
+  background: #f3f4f6;
+  border-color: #1da846;
+}
+
+.point-box2 p{
+  margin: 0;
+  font-size: 0.95rem;
+  color: #374151;
+  font-weight: 600;
+}
+
+.point-box2 strong{
+  font-size: 1.75rem;
+  color: #047857;
+  font-weight: 700;
+}
+
+/* 빠른 메뉴 버튼 */
+.quick-menu-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.menu-btn {
+  padding: 1rem 1.5rem;
+  background: #1da846;
   color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.95rem;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.Exchange-buttons button {
-  padding: 0.5rem 2rem;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-   background-color: #ffffff;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+.menu-btn:hover {
+  background: #168a3a;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(29, 168, 70, 0.3);
 }
 
-.Exchange-buttons button:hover {
-  background-color: #b3b3b3;  
-  transform: translateY(-2px); 
+.menu-btn:active {
+  transform: translateY(0);
 }
-

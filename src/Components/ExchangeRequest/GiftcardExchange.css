@@ -1,0 +1,175 @@
+/* ===============================
+   GiftcardExchange.css
+   - 상품권 상세 섹션 (TrashExchange와 동일 톤)
+   =============================== */
+
+   .details {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 18px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    margin-top: 18px;
+  }
+  
+  .section-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #111827;
+    border-bottom: 1px solid #f3f4f6;
+    padding-bottom: 6px;
+    margin-bottom: 14px;
+  }
+  
+  /* 상품 그리드 */
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+  .product-card {
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 12px;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.2s ease;
+  }
+  .product-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  }
+  .product-card.active {
+    border-color: #93c5fd;
+    box-shadow: 0 0 0 2px rgba(147,197,253,0.4);
+  }
+  
+  /* ===============================
+     이미지 크기 조절 포인트
+     1) .thumb의 aspect-ratio를 바꾸면 썸네일 박스 비율이 바뀝니다.
+        - 현재는 가장 큰 원본(360×157)을 기준으로 360/157 사용.
+     2) .thumb img의 object-fit / width / height 값을 조절하면
+        이미지 채우는 방식이 바뀝니다.
+        - cover: 꽉 채우되 일부 잘릴 수 있음
+        - contain: 잘리지 않음(여백 생길 수 있음)
+     =============================== */
+  .thumb {
+    width: 100%;
+    aspect-ratio: 360 / 157;     /* ← [조절 ①] 썸네일 상자 비율 */
+    overflow: hidden;
+    border-radius: 10px;
+    background: #f9fafb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .thumb img {
+    width: 100%;                 /* ← [조절 ②] 크기 기준 */
+    height: 100%;
+    object-fit: contain;         /* cover로 바꾸면 완전 꽉 차게(일부 크롭 가능) */
+    border-radius: 6px;
+    transition: transform 0.2s ease;
+  }
+  .product-card:hover .thumb img {
+    transform: scale(1.03);
+  }
+  
+  .product-name {
+    font-size: 14px;
+    color: #111827;
+    font-weight: 700;
+    margin-top: 6px;
+    text-align: center;
+  }
+  .product-price {
+    font-size: 13px;
+    color: #1e40af;
+    margin-top: 2px;
+  }
+  
+  /* 폼 행 (Google 금액 선택 / 수량) */
+  .form-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  .form-row label {
+    min-width: 84px;
+    font-weight: 600;
+    color: #374151;
+  }
+  .form-row select {
+    flex: 1;
+    padding: 10px 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #374151;
+    font-size: 14px;
+  }
+  
+  .qty {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .qty button {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+    background: #ffffff;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
+    color: #374151;
+  }
+  .qty input {
+    width: 70px;
+    text-align: center;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 8px 10px;
+    font-size: 14px;
+    color: #111827;
+  }
+  
+  /* 요약 / 구매 버튼 */
+  .summary-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid #e5e7eb;
+  }
+  .summary-left {
+    font-size: 14px;
+    color: #374151;
+  }
+  .summary-left strong {
+    color: #2563eb;
+  }
+  .summary-left .divider {
+    margin: 0 6px;
+    color: #d1d5db;
+  }
+  .final-btn {
+    padding: 10px 16px;
+    background: #2563eb;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: filter 0.2s ease;
+  }
+  .final-btn:hover {
+    filter: brightness(1.05);
+  }
+  
