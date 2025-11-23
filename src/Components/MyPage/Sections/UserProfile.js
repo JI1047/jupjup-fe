@@ -7,6 +7,7 @@ function UserProfile() {
   const navigate = useNavigate();
 
   useEffect(() => {
+
     const fetchUserInfo = async () => {
       try {
         const token = localStorage.getItem("accessToken");
