@@ -200,8 +200,8 @@ export default function MypageInformation() {
 
     </div>
 
-   <Link to="/Mypage">
-    <button className="Information-submit-button">정보 저장</button></Link>
+   
+    <button className="Information-submit-button">정보 저장</button>
   </div>
 </div>
 </div>
