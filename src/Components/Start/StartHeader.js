@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const StartHader = () => {
   return (
     <div className="Hader">
-       <Link to="/Login">
+       <Link to="/Adminlogin">
           <button className="login-button">Admin only</button>
           </Link>
           {/* <Link to="/Mypage">

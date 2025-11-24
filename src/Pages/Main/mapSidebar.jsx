@@ -36,7 +36,7 @@ const menuItems = [
   },
   {
     title: "포인트",
-    url: "/points",
+    url: "/MyPage/pointHistory",
     icon: Coins,
     badge: "25P",
   },

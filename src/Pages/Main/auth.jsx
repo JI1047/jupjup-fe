@@ -32,8 +32,8 @@ export default function Admin() {
     <div>
       {/* ✅ 상단 헤더 유지 */}
       <div className="My-Header">
-        <button className="home-back-button" onClick={() => navigate("/Main")}>
-          Home
+        <button className="home-back-button" onClick={() => navigate("/adminlogin")}>
+          logout
         </button>
       </div>
 

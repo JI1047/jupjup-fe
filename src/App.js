@@ -1,15 +1,17 @@
-import React from 'react';
-import './App.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import React from "react";
+import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Test from "./Pages/Test";
 import Start from "./Pages/Start";
 import Main from "./Pages/Main/Main";
 import Login from "./Pages/Login";
+import Adminlogin from "./Pages/adminlogin.js";
 import Signup from "./Pages/Signup";
 import SignupSuccess from "./Pages/SignupSuccess";
 import LoginVal from "./Pages/LoginVal";
 import SocialSignUp from "./Pages/SocialSignUp";
 import MyPage from "./Pages/MyPage";
-import CalPage from './Pages/Main/calculate/calPage.jsx';
+import CalPage from "./Pages/Main/calculate/calPage.jsx";
 import MypageInfo from "./Components/MyPage/MypageInfo";
 import Pointhistory from "./Components/MyPage/MypagePointHistory";
 import ExchangeHistory from "./Components/MyPage/ExchangeHistory";
@@ -32,6 +34,7 @@ function App() {
                     <Route path="IntroduseTH" element={<IntroduseTH />} />
                     <Route path="IntroduseFO" element={<IntroduseFO />} />
                     <Route path="/login" element={<Login />} />
+                    <Route path="/adminlogin" element={<Adminlogin />} />
                     <Route path="/Signup" element={<Signup />} />
                     <Route path="/LoginVal" element={<LoginVal />} />
                     <Route path="/Signup/SocialSignUp" element={<SocialSignUp />} />
@@ -40,14 +43,15 @@ function App() {
                     {/* <Route path="/MyPage" element={<MypageInformation />} /> */}
                     <Route path="/calPage" element={<CalPage />} />
                     <Route path="/MyPage/Info" element={<MypageInfo />} />
-                    <Route path="/MyPage/Poinhistory" element={<Pointhistory />} />
+                    <Route path="/MyPage/PointHistory" element={<Pointhistory />} />
                     <Route path="/MyPage/ExchangeHistory" element={<ExchangeHistory />} />
                     <Route path="/MyPage/ExchangeRequest" element={<ExchangeRequest />} />
-                    
+                    <Route path="/points" element={<Pointhistory />} />
+
                     <Route path="/Main" element={<Main />} />
                     <Route path="/auth" element={<AuthCodePage />} />
-                </Routes>
-      </BrowserRouter>
+                  </Routes>
+                </BrowserRouter>
 
     </div>
   );
