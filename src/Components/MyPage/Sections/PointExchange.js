@@ -11,7 +11,7 @@ const PointExchange = () => {
         <div className="quick-menu-buttons">
           <button
             className="menu-btn"
-            onClick={() => navigate("/MyPage/Poinhistory")}
+            onClick={() => navigate("/MyPage/pointHistory")}
           >
             포인트 내역
           </button>
