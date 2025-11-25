@@ -1,62 +1,173 @@
 .admin-container {
-  max-width: 500px;
-  margin: 60px auto;
-  padding: 32px 32px 120px; /* 아래 패딩 충분히 줘서 드롭다운 공간 확보 */
-  background-color: #f9f9f9;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  overflow: visible;
-  position: relative;
+  width: 50rem;
+  margin: 80px auto;
+  padding: 40px 40px 100px;
+  background-color: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeIn 0.4s ease-in-out;
 }
+
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
 
 .admin-title {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 24px;
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 32px;
   text-align: center;
+  color: #222;
+  letter-spacing: -0.5px;
 }
 
-.admin-label {
-  display: block;
-  margin-bottom: 6px;
-  font-weight: 600;
-  color: #333;
-  text-align: start;
+.admin-sub {
+  font-size: 15px;
+  color: #666;
+  margin-top: -10px;      
+  margin-bottom: 24px;    
+  text-align: center;
+  letter-spacing: -0.2px;
+  line-height: 1.4;
+  opacity: 0.85;
 }
+
+
+.admin-label {
+  width: 100%;
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #444;
+}
+
 
 .admin-input,
 .admin-select {
   width: 100%;
-  padding: 10px 12px;
-  margin-bottom: 20px;
+  padding: 12px 14px;
+  margin-bottom: 24px;
   font-size: 15px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  background-color: white;
-  color: #333;
-  box-sizing: border-box;
-  transition: border-color 0.2s ease;
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+  background-color: #fafafa;
+  transition: 0.25s ease;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
 }
+
 
 .admin-input:focus,
 .admin-select:focus {
   border-color: #1da846;
+  background-color: #fff;
+  box-shadow: 0 0 0 2px rgba(29,168,70,0.15);
   outline: none;
 }
 
+
 .admin-submit-button {
   width: 100%;
-  padding: 12px;
+  padding: 14px;
   background-color: #1da846;
   color: white;
   border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  font-weight: bold;
+  border-radius: 8px;
+  font-size: 17px;
+  font-weight: 700;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  margin-top: 10px;
+  transition: all 0.25s ease;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
 }
 
 .admin-submit-button:hover {
-  background-color: #0a5218;
+  background-color: #158538;
+  transform: translateY(-2px);
+}
+
+.admin-submit-button:active {
+  background-color: #0e622a;
+  transform: translateY(0);
+}
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-box {
+  width: 40rem;
+
+  background: white;
+  padding: 25px;
+  border-radius: 14px;
+  text-align: center;
+  animation: fadeIn 0.25s ease-out;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+  
+}
+
+.modal-title {
+  font-size: 30px;
+  font-weight: 700;
+
+}
+
+.modal-guide {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #1da846;
+  font-weight: 600;
+  margin-bottom: 16px;
+
+}
+.modal-text{
+ font-size: 10px;
+
+}
+
+.modal-close-btn {
+  margin-top: 20px;
+  width: 10rem;
+  padding: 12px;
+  background: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.modal-close-btn:hover {
+  background: #45a049;
+}
+.modal-qr {
+  margin: 14px 0;
+}
+
+.modal-timer {
+  margin-top: 10px;
+  font-size: 30px;
+  font-weight: bold;
+  color: #000000;
+  text-align: center;
+}
+
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }

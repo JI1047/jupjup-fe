@@ -14,7 +14,7 @@ const StartBody = () => {
           
   
     </div>
-      <section className="contents-section">
+      {/*<section className="contents-section">
         <Link to="/Introduse">
         <button className="content-card"></button></Link>
 
@@ -26,7 +26,7 @@ const StartBody = () => {
 
         <Link to="/IntroduseFO">
         <button className="content-card"></button></Link>
-      </section>
+      </section>*/}
 
    
     </div>

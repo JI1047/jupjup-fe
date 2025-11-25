@@ -47,7 +47,7 @@ const menuItems = [
   },
   {
     title: "소개",
-    url: "/start",
+    url: "/",
     icon: Info,
   },
   {
@@ -100,9 +100,9 @@ function AppSidebar() {
       <SidebarHeader>
         <div className="logo-container">
           <div className="logo-icon">
-            <img src="/logo.png" alt="Logo" className="icon-medium" />
+             <img src="/images/logo.png" alt="logo" className="logopng" />
           </div>
-          <span className="brand-title">RECYCLING</span>
+         
         </div>
       </SidebarHeader>
 

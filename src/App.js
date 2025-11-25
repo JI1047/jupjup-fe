@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Test from "./Pages/Test";
 import Start from "./Pages/Start";
 import Main from "./Pages/Main/Main";
@@ -17,22 +17,30 @@ import Pointhistory from "./Components/MyPage/MypagePointHistory";
 import ExchangeHistory from "./Components/MyPage/ExchangeHistory";
 import ExchangeRequest from "./Pages/ExchangeRequest";
 import AuthCodePage from "./Pages/Main/auth.jsx";
-import Introduse from "./Components/Start/introduse";
-import IntroduseSE from "./Components/Start/introduseSE";
-import IntroduseTH from "./Components/Start/introduseTH";
-import IntroduseFO from "./Components/Start/introduseFO";
+import Introduse from "./Pages/introduse.js";
+import IntroduseSE from "./Pages/introduseSE.js";
+import IntroduseTH from "./Pages/introduseTH.js";
+import IntroduseFO from "./Pages/introduseFO.js";
+import { TestTube } from "lucide-react";
+
+
+
 
 function App() {
+
+
   return (
     <div className="App">
       <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<Start />} />
+            
+
+                    <Route path="/" element={<Test />} />
                     <Route path="/Start" element={<Start />} />
-                    <Route path="Introduse" element={<Introduse />} />
-                    <Route path="IntroduseSE" element={<IntroduseSE />} />
-                    <Route path="IntroduseTH" element={<IntroduseTH />} />
-                    <Route path="IntroduseFO" element={<IntroduseFO />} />
+                    <Route path="/Introduse" element={<Introduse />} />
+                    <Route path="/IntroduseSE" element={<IntroduseSE />} />
+                    <Route path="/IntroduseTH" element={<IntroduseTH />} />
+                    <Route path="/IntroduseFO" element={<IntroduseFO />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/adminlogin" element={<Adminlogin />} />
                     <Route path="/Signup" element={<Signup />} />

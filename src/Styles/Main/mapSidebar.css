@@ -8,23 +8,12 @@
   padding: 0;
 }
 
-/* Brand(Row) */
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-.brand-logo {
-  width: 24px;
-  height: 24px;
-  border-radius: 9999px;
-  object-fit: cover;
-  background: #fff;
-}
-.brand-name {
-  font-weight: 700;
-  color: #065f46; /* green-800 */
-  font-size: 1.25rem;
+
+.logopng {
+  width: 220px;
+  height: 120px;
+  object-fit: contain;
+  margin-left: 10rem;
 }
 
 /* Profile Section in Header */

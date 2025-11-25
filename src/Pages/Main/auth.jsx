@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react"; 
 import { useNavigate } from "react-router-dom";
 import QRCode from "qrcode";
 import "../../Components/MyPage/MypageHeader.js";
@@ -6,19 +6,20 @@ import "../../Styles/Main/Admin.css";
 
 export default function Admin() {
   const navigate = useNavigate();
+  const [countdown, setCountdown] = useState(180);
 
   const [formData, setFormData] = useState({
     userId: "",
     locationId: "",
     itemId: "",
     quantity: "",
-    calculatedPoint: "",
   });
 
   const [qrImage, setQrImage] = useState(null);
   const [responseData, setResponseData] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  const [showModal, setShowModal] = useState(false); // ⭐ NEW
   const token = localStorage.getItem("accessToken");
 
   // 🔥 폼 입력 처리
@@ -58,7 +59,7 @@ export default function Admin() {
       const qr = await QRCode.toDataURL(data.qrUrl, { width: 240, margin: 2 });
       setQrImage(qr);
 
-      alert("QR 생성 성공!");
+      setShowModal(true); // ⭐ 모달 열기
 
     } catch (err) {
       alert(`에러: ${err.message}`);
@@ -68,9 +69,30 @@ export default function Admin() {
     }
   };
 
+useEffect(() => {
+  let timer;
+
+  if (showModal) {
+    setCountdown(180); // 모달 열릴 때 타이머 초기화
+
+    timer = setInterval(() => {
+      setCountdown((prev) => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          setShowModal(false); // 자동으로 닫기
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000); // 1초마다 실행
+  }
+
+  return () => clearInterval(timer);
+}, [showModal]);
+
+
   return (
     <div>
-      {/* 🔼 상단 헤더 */}
       <div className="My-Header">
         <button className="home-back-button" onClick={() => navigate("/adminlogin")}>
           logout
@@ -78,14 +100,15 @@ export default function Admin() {
       </div>
 
       <div className="admin-container">
-        <h2 className="admin-title">관리자 입력 + QR 생성</h2>
+        <h2 className="admin-title">QR 발급</h2>
+        <p className="admin-sub">올바른 사용자 정보를 입력해주세요.</p>
 
         {/* 입력 폼 */}
         <form className="admin-form" onSubmit={handleSubmit}>
 
           <label className="admin-label">사용자 ID</label>
           <input
-            type="number"
+            type="text"
             name="userId"
             className="admin-input"
             value={formData.userId}
@@ -94,7 +117,7 @@ export default function Admin() {
 
           <label className="admin-label">거점 ID</label>
           <input
-            type="number"
+            type="text"
             name="locationId"
             className="admin-input"
             value={formData.locationId}
@@ -131,27 +154,41 @@ export default function Admin() {
             onChange={handleChange}
           />
 
-          
-
           <button type="submit" className="admin-submit-button" disabled={loading}>
             {loading ? "생성 중..." : "QR 생성"}
           </button>
         </form>
       </div>
 
-      {/* QR 및 응답 표시 */}
-      {responseData && (
-        <div style={{ marginTop: "20px", textAlign: "center" }}>
-          <p><strong>Claim ID:</strong> {responseData.claimId}</p>
-          <p><strong>만료 시각:</strong> {responseData.expiresAt}</p>
-          <p><strong>URL:</strong> <a href={responseData.qrUrl}>{responseData.qrUrl}</a></p>
+      {/* ⭐ NEW : QR 생성 모달 */}
+      {showModal && responseData && (
+        <div className="modal-overlay" onClick={() => setShowModal(false)}>
+          <div className="modal-box" onClick={(e) => e.stopPropagation()}>
+            <h3 className="modal-title">QR코드</h3>
+            <p className="modal-guide">아래 QR을 인식하면 포인트가 자동으로 적립됩니다. </p>
 
-          {qrImage && (
-            <div style={{ marginTop: "30px" }}>
-              <h4>생성된 QR 코드</h4>
-              <img src={qrImage} alt="qr" width="240" />
-            </div>
-          )}
+            <p className="modal-text"><strong>Claim ID:</strong> {responseData.claimId}</p>
+            <p className="modal-text"><strong>만료 시각:</strong> {responseData.expiresAt}</p>
+            <p className="modal-text"><strong>URL:</strong> {responseData.qrUrl}</p>
+
+             <p className="modal-timer">
+              남은 시간: {Math.floor(countdown / 60)}분 {countdown % 60}초 </p>
+
+            {qrImage && (
+              <div className="modal-qr">
+                <img src={qrImage} alt="QR" width="300" />
+              </div>
+            )}
+
+          <button 
+                  className="modal-close-btn" 
+                  onClick={() => setShowModal(false)}
+                >
+                  닫기
+                </button>
+          
+            
+          </div>
         </div>
       )}
 

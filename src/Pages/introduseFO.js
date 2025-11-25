@@ -1,4 +1,4 @@
-import "../../Styles/Start/introduseFO.css";
+import "../Styles/Start/introduseFO.css";
 
 
 const introduseFO = () => {

@@ -2,13 +2,18 @@ import "../Styles/Start/Start.css";
 import Header from "../Components/Start/StartHeader";
 import Body from "../Components/Start/StartBody";
 //import Footer from "../Components/Start/StartFooter";
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import { pageVariants, pageTransition } from "./Transition";
 
 
 
+function Start () {
+ 
 
-const Start = () => {
   return (
-    <div className="Background">
+
+    <div className="Background"  >
      
         <Header />
          <div className="image-wrapper">
