@@ -4,7 +4,7 @@ import "../../Styles/Main/ui_css/infoBox.css";
 
 const KAKAO_SDK =
   "//dapi.kakao.com/v2/maps/sdk.js?appkey=f143a20f2be877dcef35366b593462b0&autoload=false";
-const BACKEND_URL = "http://localhost:8080/map/main";
+const BACKEND_URL = "/map/main";
 
 export function MapView() {
   const mapRef = useRef(null);
@@ -65,7 +65,7 @@ export function MapView() {
               ? `<ul>
                   ${pos.itemNames.map((item) => `<li>${item}</li>`).join("")}
                  </ul>`
-              : "<div>수거 품목 정보 없음</div>";
+              : "<div>?�거 ?�목 ?�보 ?�음</div>";
 
           const markerId = `marker-${index}`;
           const iwContent = `
@@ -74,10 +74,10 @@ export function MapView() {
             <div class="title">${pos.name}</div>
             <div class="label">주소:</div>
             <div class="value">${pos.lotAddress ?? "-"}</div>
-            <div class="label">연락처:</div>
+            <div class="label">?�락�?</div>
             <div class="value">${pos.tel ?? "-"}</div>
             <div class="items-section">
-              <div class="items-label">수거 항목</div>
+              <div class="items-label">?�거 ??��</div>
               ${itemListHtml}
             </div>
             <div class="tail"></div>
@@ -103,13 +103,13 @@ export function MapView() {
 
         markerDataRef.current = newMarkerData;
       } catch (e) {
-        console.error("마커 데이터 로딩 실패:", e);
+        console.error("마커 ?�이??로딩 ?�패:", e);
       }
     };
 
     initMap();
 
-    // ✅ 전역 닫기 함수 등록
+    // ???�역 ?�기 ?�수 ?�록
     window.closeInfoWindow = (id) => {
       if (window.infowindows && window.infowindows[id]) {
         window.infowindows[id].close();
@@ -117,7 +117,7 @@ export function MapView() {
     };
   }, []);
 
-  // 🔍 외부에서 마커로 이동
+  // ?�� ?��??�서 마커�??�동
   MapView.moveToMarkerByName = (name) => {
     const map = mapRef.current;
     if (!map) return;
@@ -131,7 +131,7 @@ export function MapView() {
       map.setCenter(position);
       match.infowindow.open(map, match.marker);
     } else {
-      console.warn("해당 마커를 찾을 수 없습니다.");
+      console.warn("?�당 마커�?찾을 ???�습?�다.");
     }
   };
 

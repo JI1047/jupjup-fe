@@ -7,11 +7,10 @@ function AdminBody() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  // ✅ 로컬 로그인
-  const handleLogin = async () => {
+  // ??로컬 로그??  const handleLogin = async () => {
     try {
       const response = await fetch(
-        "http://localhost:8080/api/auth/local-login",
+        "/api/auth/local-login",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -23,30 +22,30 @@ function AdminBody() {
         const data = await response.json();
         localStorage.setItem("accessToken", data.jwt);
 
-        console.log("🔥 accessToken:", data.jwt);
-        console.log("로컬 로그인 성공:", data);
+        console.log("?�� accessToken:", data.jwt);
+        console.log("로컬 로그???�공:", data);
 
         setTimeout(() => {
           navigate("/auth");
         }, 150);
 
       } else {
-        alert("로그인 실패: 아이디 또는 비밀번호가 틀렸습니다.");
+        alert("로그???�패: ?�이???�는 비�?번호가 ?�?�습?�다.");
       }
     } catch (error) {
-      console.error("로그인 에러:", error);
-      alert("서버 오류가 발생했습니다.");
+      console.error("로그???�러:", error);
+      alert("?�버 ?�류가 발생?�습?�다.");
     }
   };
 
-  // ✅ 소셜 로그인 콜백
+  // ???�셜 로그??콜백
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const jwt = urlParams.get("token");
 
     if (jwt) {
       localStorage.setItem("accessToken", jwt);
-      console.log("🔥 accessToken:", jwt);
+      console.log("?�� accessToken:", jwt);
       navigate("/login-success");
     }
   }, [navigate]);
@@ -55,7 +54,7 @@ function AdminBody() {
     <div className="admin-container">
       <div className="admin-box">
         <h2 className="admin-title">Admin Access Only</h2>
-        <p className="admin-sub">관리자 전용 페이지입니다.</p>
+        <p className="admin-sub">관리자 ?�용 ?�이지?�니??</p>
 
         <input
           type="text"
@@ -67,15 +66,14 @@ function AdminBody() {
 
         <input
           type="password"
-          placeholder="비밀번호"
+          placeholder="비�?번호"
           className="admin-input"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
 
         <button className="admin-btn" onClick={handleLogin}>
-          로그인하기
-        </button>
+          로그?�하�?        </button>
       </div>
     </div>
   );

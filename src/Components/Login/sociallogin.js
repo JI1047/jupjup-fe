@@ -11,13 +11,13 @@ function Sociallogin() {
 
   if (jwt) {
     localStorage.setItem("accessToken", jwt);
-    console.log("🔥 accessToken:", jwt);
+    console.log("?�� accessToken:", jwt);
     navigate("/login-success");
   }
 }, [navigate]);
 
  const socialLogin = (provider) => {
-    window.location.href = `http://localhost:8080/oauth2/authorization/${provider}`;
+    window.location.href = `/oauth2/authorization/${provider}`;
   };
 
 
@@ -25,12 +25,12 @@ function Sociallogin() {
     <div className="sociallogin">
        <div className="Box">
        <div className="Text">
-          <p>간편로그인</p>
+          <p>간편로그??/p>
           </div>
           <div className="social-buttons">
-            <button className="kakao-btn"onClick={() => socialLogin('kakao')} >카카오</button>
+            <button className="kakao-btn"onClick={() => socialLogin('kakao')} >카카??/button>
             <div className="social-icons">
-              <button className="naver-btn" onClick={() => socialLogin('naver')}>네이버</button>
+              <button className="naver-btn" onClick={() => socialLogin('naver')}>?�이�?/button>
             </div>
           </div>
         </div>

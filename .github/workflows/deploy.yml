@@ -26,7 +26,14 @@ jobs:
         uses: docker/setup-buildx-action@v3
 
       - name: Build ARM64 Docker image
-        run: docker buildx build --platform linux/arm64 -t ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} --output type=docker,dest=${{ env.IMAGE_TAR }} .
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          platforms: linux/arm64
+          tags: ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
+          outputs: type=docker,dest=${{ env.IMAGE_TAR }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
       - name: Export Docker image
         run: gzip -c ${{ env.IMAGE_TAR }} > ${{ env.IMAGE_ARCHIVE }}
@@ -59,6 +66,7 @@ jobs:
             sudo docker run -d \
               --name "${{ env.CONTAINER_NAME }}" \
               --restart unless-stopped \
+              --add-host=host.docker.internal:host-gateway \
               -p 80:80 \
               "${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}"
             rm -f "${{ env.IMAGE_ARCHIVE }}"
