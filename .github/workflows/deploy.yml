@@ -12,6 +12,7 @@ env:
   IMAGE_NAME: jupjup-fe
   IMAGE_TAG: latest
   IMAGE_ARCHIVE: jupjup-fe.tar.gz
+  IMAGE_TAR: jupjup-fe.tar
 
 jobs:
   deploy:
@@ -21,11 +22,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Build Docker image
-        run: docker build -t ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} .
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build ARM64 Docker image
+        run: docker buildx build --platform linux/arm64 -t ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} --output type=docker,dest=${{ env.IMAGE_TAR }} .
 
       - name: Export Docker image
-        run: docker save ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} | gzip > ${{ env.IMAGE_ARCHIVE }}
+        run: gzip -c ${{ env.IMAGE_TAR }} > ${{ env.IMAGE_ARCHIVE }}
 
       - name: Copy image to EC2
         uses: appleboy/scp-action@v0.1.7
