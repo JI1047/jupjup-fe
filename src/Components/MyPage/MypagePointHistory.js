@@ -9,7 +9,7 @@ const MypagePointHistory = () => {
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
 
-    fetch("http://13.209.202.27:8080/recycle-history/user", {
+    fetch("http://localhost:8080/recycle-history/user", {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => res.json())

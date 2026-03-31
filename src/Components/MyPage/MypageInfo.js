@@ -42,7 +42,7 @@ export default function MypageInformation() {
             navigate("/oauth/loginInfo");
             return;
           }
-          const res = await fetch("http://13.209.202.27:8080/api/auth/me", {
+          const res = await fetch("http://localhost:8080/api/auth/me", {
             headers: { Authorization: "Bearer " + token }
           });
           if (!res.ok) throw new Error("내 정보 조회 실패");
@@ -79,7 +79,7 @@ export default function MypageInformation() {
 
       const token = localStorage.getItem("accessToken");
       try {
-        const res = await fetch("http://13.209.202.27:8080/api/auth/edit", {
+        const res = await fetch("http://localhost:8080/api/auth/edit", {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",

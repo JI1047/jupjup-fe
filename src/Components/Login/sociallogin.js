@@ -17,7 +17,7 @@ function Sociallogin() {
 }, [navigate]);
 
  const socialLogin = (provider) => {
-    window.location.href = `http://13.209.202.27:8080/oauth2/authorization/${provider}`;
+    window.location.href = `http://localhost:8080/oauth2/authorization/${provider}`;
   };
 
 

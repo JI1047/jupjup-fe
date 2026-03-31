@@ -11,7 +11,7 @@ function AdminBody() {
   const handleLogin = async () => {
     try {
       const response = await fetch(
-        "http://13.209.202.27:8080/api/auth/local-login",
+        "http://localhost:8080/api/auth/local-login",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

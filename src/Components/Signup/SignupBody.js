@@ -19,7 +19,7 @@ function SignupBody() {
   // 이메일 중복 확인
   const handleCheckEmail = async () => {
     try {
-      const res = await axios.get('http://13.209.202.27:8080/api/auth/check-email', {
+      const res = await axios.get('http://localhost:8080/api/auth/check-email', {
         params: { email }
       });
       setMessage(res.data); // "사용 가능한 이메일입니다"
@@ -40,7 +40,7 @@ function SignupBody() {
     }
 
     try {
-      const response = await axios.post('http://13.209.202.27:8080/api/auth/signup', {
+      const response = await axios.post('http://localhost:8080/api/auth/signup', {
         email,
         password,
         name,

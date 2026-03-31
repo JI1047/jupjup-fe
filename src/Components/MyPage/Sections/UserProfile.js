@@ -13,7 +13,7 @@ function UserProfile() {
         const token = localStorage.getItem("accessToken");
         console.log("👉 저장된 JWT:", token);
 
-        const response = await fetch("http://13.209.202.27:8080/api/auth/me", {
+        const response = await fetch("http://localhost:8080/api/auth/me", {
           headers: {
             Authorization: "Bearer " + token,
           },

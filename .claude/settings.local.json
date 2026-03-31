@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(powershell.exe -Command \"Start-Process msiexec.exe -ArgumentList ''/i C:\\\\tmp\\\\AWSCLIV2.msi /qn /l*v C:\\\\tmp\\\\aws_install.log'' -Verb RunAs -Wait\")",
+      "Bash(echo \"exit: $?\")",
+      "Bash(powershell.exe -Command \"Get-Content 'C:\\\\\\\\tmp\\\\\\\\aws_install.log' -Tail 30\" 2>&1)",
+      "Bash(powershell.exe -Command \"Invoke-WebRequest -Uri 'https://awscli.amazonaws.com/AWSCLIV2.msi' -OutFile 'C:\\\\Users\\\\kjs00\\\\AppData\\\\Local\\\\Temp\\\\AWSCLIV2.msi'; Write-Host 'Done'\" 2>&1)",
+      "Bash(powershell.exe -Command \"& 'C:\\\\Program Files\\\\Amazon\\\\AWSCLIV2\\\\aws.exe' ec2 describe-addresses --region ap-northeast-2 --query 'Addresses[?PublicIp==\\\\`13.124.209.48\\\\`].{AllocationId:AllocationId,AssociationId:AssociationId}' --output table\" 2>&1)"
+    ]
+  }
+}

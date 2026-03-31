@@ -80,7 +80,7 @@ function AppSidebar() {
       if (!token) return; // 토큰 없으면 실행 안함
 
       try {
-        const response = await axios.get("http://13.209.202.27:8080/api/auth/me", {
+        const response = await axios.get("http://localhost:8080/api/auth/me", {
           headers: {
             Authorization: `Bearer ${token}`,
           },

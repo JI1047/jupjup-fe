@@ -12,7 +12,7 @@ function LoginForm() {
   const handleLogin = async () => {
     try {
       const response = await fetch(
-        "http://13.209.202.27:8080/api/auth/local-login",
+        "http://localhost:8080/api/auth/local-login",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -59,7 +59,7 @@ function LoginForm() {
 
   // ✅ 소셜 로그인 시작
   const socialLogin = (provider) => {
-    window.location.href = `http://13.209.202.27:8080/oauth2/authorization/${provider}`;
+    window.location.href = `http://localhost:8080/oauth2/authorization/${provider}`;
   };
 
   return (

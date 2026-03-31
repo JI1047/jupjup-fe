@@ -37,7 +37,7 @@ export default function Admin() {
     setLoading(true);
 
     try {
-      const res = await fetch("http://13.209.202.27:8080/recycle-history/claims", {
+      const res = await fetch("http://localhost:8080/recycle-history/claims", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

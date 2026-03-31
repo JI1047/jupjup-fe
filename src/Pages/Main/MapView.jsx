@@ -4,7 +4,7 @@ import "../../Styles/Main/ui_css/infoBox.css";
 
 const KAKAO_SDK =
   "//dapi.kakao.com/v2/maps/sdk.js?appkey=f143a20f2be877dcef35366b593462b0&autoload=false";
-const BACKEND_URL = "http://13.209.202.27:8080/map/main";
+const BACKEND_URL = "http://localhost:8080/map/main";
 
 export function MapView() {
   const mapRef = useRef(null);
