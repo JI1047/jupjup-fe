@@ -1,65 +1,48 @@
 import "../../Styles/Login/LoginForm.css";
-import { Link } from "react-router-dom";
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 
 function LoginForm() {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  // ??로컬 로그??  const handleLogin = async () => {
+  const handleLogin = async () => {
     try {
-      const response = await fetch(
-        "/api/auth/local-login",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email: id, password }),
-        }
-      );
+      const response = await fetch("/api/auth/local-login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: id, password }),
+      });
 
       if (response.ok) {
         const data = await response.json();
         localStorage.setItem("accessToken", data.jwt);
-        console.log("?�� accessToken:", localStorage.getItem("accessToken"));
-        console.log("로컬 로그???�공:", data);
+        console.log("accessToken:", localStorage.getItem("accessToken"));
+        console.log("로컬 로그인 성공:", data);
 
-
-        // 로그???�공 ??Main ?�이지�??�동
-        navigate("/Main");
-
-        console.log('로컬 로그???�공:', data);
-       // ???�큰 ?�?????�동 (0.2�??�레?�로 ?�전?�게)
         setTimeout(() => {
-          navigate("/Main"); // ?�는 /Main, ?�제 ?�이지 경로??맞게
+          navigate("/Main");
         }, 200);
-
       } else {
-        alert("로그???�패: ?�이???�는 비�?번호가 ?�?�습?�다.");
+        alert("로그인 실패: 아이디 또는 비밀번호가 올바르지 않습니다.");
       }
     } catch (error) {
-      console.error("로그???�러:", error);
-      alert("?�버 ?�류가 발생?�습?�다.");
+      console.error("로그인 에러:", error);
+      alert("서버 오류가 발생했습니다.");
     }
   };
 
-  // ???�셜 로그??리디?�션 ???�큰 발급
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const jwt = urlParams.get("token");
 
     if (jwt) {
       localStorage.setItem("accessToken", jwt);
-      console.log("?�� accessToken:", jwt);
+      console.log("accessToken:", jwt);
       navigate("/login-success");
     }
   }, [navigate]);
-
-  // ???�셜 로그???�작
-  const socialLogin = (provider) => {
-    window.location.href = `/oauth2/authorization/${provider}`;
-  };
 
   return (
     <div className="LoginForm">
@@ -83,11 +66,14 @@ function LoginForm() {
           <span>ID | Password 찾기</span>
           <div className="singup">
             <Link to="/signup" className="find-link">
-              ?�원가?�하�?            </Link>
+              회원가입하기
+            </Link>
           </div>
-          </div>
+        </div>
+
         <button className="login-btn" onClick={handleLogin}>
-          로그?�하�?        </button>
+          로그인하기
+        </button>
       </div>
     </div>
   );

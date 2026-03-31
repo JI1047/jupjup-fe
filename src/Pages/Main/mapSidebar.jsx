@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useRecentSearch } from "./RecentSearch.jsx";
@@ -30,28 +30,28 @@ import "../../Styles/Main/mapSidebar.css";
 
 const menuItems = [
   {
-    title: "마이?�이지",
+    title: "마이페이지",
     url: "/mypage",
     icon: User,
   },
   {
-    title: "?�인??,
+    title: "포인트",
     url: "/MyPage/pointHistory",
     icon: Coins,
     badge: "25P",
   },
   {
-    title: "?�활?�품 계산",
+    title: "재활용품 계산",
     url: "/calPage",
     icon: Calculator,
   },
   {
-    title: "?�개",
+    title: "소개",
     url: "/",
     icon: Info,
   },
   {
-    title: "?�전?�청",
+    title: "환전요청",
     url: "/MyPage/ExchangeRequest",
     icon: ArrowLeftRight,
   },
@@ -59,32 +59,33 @@ const menuItems = [
 
 function AppSidebar() {
   const navigate = useNavigate();
-  const [user, setUser] = useState(null); // ???�용???�태 ?�??  const { recentSearches } = useRecentSearch(); // 최근 검?�어 가?�오�?
-  // 최근 검???�릭
+  const [user, setUser] = useState(null);
+  const { recentSearches } = useRecentSearch();
+
   const handleRecentSearchClick = (text) => {
-    console.log("최근 검??", text);
+    console.log("최근 검색", text);
   };
 
-  // 로그?�웃 처리
   const handleLogout = () => {
     localStorage.removeItem("accessToken");
-    window.location.href = "/Main"; // ???�전 리로??  };
+    window.location.href = "/Main";
+  };
 
-  // ??로그???�용???�보 가?�오�?  useEffect(() => {
+  useEffect(() => {
     const fetchUserInfo = async () => {
       const token = localStorage.getItem("accessToken");
-      if (!token) return; // ?�큰 ?�으�??�행 ?�함
+      if (!token) return;
 
       try {
         const response = await axios.get("/api/auth/me", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-          withCredentials: true, // ??추�?
+          withCredentials: true,
         });
         setUser(response.data);
       } catch (error) {
-        console.error("?�용???�보 ?�청 ?�패:", error);
+        console.error("사용자 정보 요청 실패:", error);
       }
     };
 
@@ -96,9 +97,8 @@ function AppSidebar() {
       <SidebarHeader>
         <div className="logo-container">
           <div className="logo-icon">
-             <img src="/images/logo.png" alt="logo" className="logopng" />
+            <img src="/images/logo.png" alt="logo" className="logopng" />
           </div>
-         
         </div>
       </SidebarHeader>
 
@@ -128,7 +128,8 @@ function AppSidebar() {
 
         <SidebarGroup>
           <SidebarGroupLabel className="left-align-label">
-            최근 검??          </SidebarGroupLabel>
+            최근 검색
+          </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {recentSearches.length > 0 ? (
@@ -148,18 +149,16 @@ function AppSidebar() {
                   </SidebarMenuItem>
                 ))
               ) : (
-                <li className="recent-empty">최근 검?�이 ?�습?�다</li>
+                <li className="recent-empty">최근 검색이 없습니다</li>
               )}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
 
-      {/* ???�용???�보 ?�시 부�?*/}
       <SidebarFooter>
         <Separator />
         {localStorage.getItem("accessToken") && user ? (
-          // 로그???�태
           <>
             <div className="profile-section">
               <div className="profile-info">
@@ -170,30 +169,26 @@ function AppSidebar() {
                   </AvatarFallback>
                 </Avatar>
                 <div className="profile-details">
-                  <p className="text-small text-green truncate">
-                    {user.name}
-                  </p>
-                  <p className="text-small text-gray truncate">
-                    {user.email}
-                  </p>
+                  <p className="text-small text-green truncate">{user.name}</p>
+                  <p className="text-small text-gray truncate">{user.email}</p>
                 </div>
               </div>
             </div>
             <Button variant="outline" className="btn-logout" onClick={handleLogout}>
               <LogOut className="icon-small" />
-              로그?�웃
+              로그아웃
             </Button>
           </>
         ) : (
-          // 비로그인 ?�태
           <div className="login-required-section">
-            <p className="login-required-text">로그???�요</p>
+            <p className="login-required-text">로그인이 필요합니다</p>
             <Button
               variant="outline"
               className="btn-login"
               onClick={() => (window.location.href = "/login")}
             >
-              로그??            </Button>
+              로그인
+            </Button>
           </div>
         )}
       </SidebarFooter>

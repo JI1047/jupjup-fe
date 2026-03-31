@@ -1,28 +1,38 @@
-import React, { useState, useEffect } from "react"; 
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import QRCode from "qrcode";
 import "../../Components/MyPage/MypageHeader.js";
 import "../../Styles/Main/Admin.css";
 
+const ITEM_OPTIONS = [
+  { value: 1, label: "투명 페트병" },
+  { value: 2, label: "플라스틱" },
+  { value: 3, label: "알루미늄 캔" },
+  { value: 4, label: "철 캔" },
+  { value: 5, label: "비닐" },
+  { value: 6, label: "종이류" },
+  { value: 7, label: "신문" },
+  { value: 8, label: "의류" },
+  { value: 9, label: "소주병" },
+  { value: 10, label: "맥주병" },
+  { value: 11, label: "기타 병" },
+];
+
 export default function Admin() {
   const navigate = useNavigate();
   const [countdown, setCountdown] = useState(180);
-
   const [formData, setFormData] = useState({
     userId: "",
     locationId: "",
     itemId: "",
     quantity: "",
   });
-
   const [qrImage, setQrImage] = useState(null);
   const [responseData, setResponseData] = useState(null);
   const [loading, setLoading] = useState(false);
-
-  const [showModal, setShowModal] = useState(false); // �?NEW
+  const [showModal, setShowModal] = useState(false);
   const token = localStorage.getItem("accessToken");
 
-  // ?�� ???�력 처리
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -31,7 +41,6 @@ export default function Admin() {
     }));
   };
 
-  // ?�� QR ?�성 API ?�출
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -51,44 +60,41 @@ export default function Admin() {
         }),
       });
 
-      if (!res.ok) throw new Error(`?�버 ?�답 ?�류: ${res.status}`);
+      if (!res.ok) throw new Error(`서버 응답 오류: ${res.status}`);
 
       const data = await res.json();
       setResponseData(data);
 
       const qr = await QRCode.toDataURL(data.qrUrl, { width: 240, margin: 2 });
       setQrImage(qr);
-
-      setShowModal(true); // �?모달 ?�기
-
+      setShowModal(true);
     } catch (err) {
-      alert(`?�러: ${err.message}`);
+      alert(`에러: ${err.message}`);
       console.error(err);
     } finally {
       setLoading(false);
     }
   };
 
-useEffect(() => {
-  let timer;
+  useEffect(() => {
+    let timer;
 
-  if (showModal) {
-    setCountdown(180); // 모달 ?�릴 ???�?�머 초기??
-    timer = setInterval(() => {
-      setCountdown((prev) => {
-        if (prev <= 1) {
-          clearInterval(timer);
-          setShowModal(false); // ?�동?�로 ?�기
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000); // 1초마???�행
-  }
+    if (showModal) {
+      setCountdown(180);
+      timer = setInterval(() => {
+        setCountdown((prev) => {
+          if (prev <= 1) {
+            clearInterval(timer);
+            setShowModal(false);
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+    }
 
-  return () => clearInterval(timer);
-}, [showModal]);
-
+    return () => clearInterval(timer);
+  }, [showModal]);
 
   return (
     <div>
@@ -100,12 +106,10 @@ useEffect(() => {
 
       <div className="admin-container">
         <h2 className="admin-title">QR 발급</h2>
-        <p className="admin-sub">?�바�??�용???�보�??�력?�주?�요.</p>
+        <p className="admin-sub">올바른 사용자 정보를 입력해 주세요.</p>
 
-        {/* ?�력 ??*/}
         <form className="admin-form" onSubmit={handleSubmit}>
-
-          <label className="admin-label">?�용??ID</label>
+          <label className="admin-label">사용자 ID</label>
           <input
             type="text"
             name="userId"
@@ -123,28 +127,22 @@ useEffect(() => {
             onChange={handleChange}
           />
 
-          <label className="admin-label">?�활???�목</label>
+          <label className="admin-label">재활용 품목</label>
           <select
             name="itemId"
             className="admin-select"
             value={formData.itemId}
             onChange={handleChange}
           >
-            <option value="">-- ?�택 --</option>
-            <option value={1}>?�명?�트�?/option>
-            <option value={2}>?�라?�틱</option>
-            <option value={3}>?�루미늄 �?/option>
-            <option value={4}>�?�?/option>
-            <option value={5}>비닐</option>
-            <option value={6}>종이??/option>
-            <option value={7}>?�문</option>
-            <option value={8}>?�류</option>
-            <option value={9}>?�주�?/option>
-            <option value={10}>맥주�?/option>
-            <option value={11}>기�?�?/option>
+            <option value="">-- 선택 --</option>
+            {ITEM_OPTIONS.map((item) => (
+              <option key={item.value} value={item.value}>
+                {item.label}
+              </option>
+            ))}
           </select>
 
-          <label className="admin-label">?�량</label>
+          <label className="admin-label">수량</label>
           <input
             type="number"
             name="quantity"
@@ -154,24 +152,32 @@ useEffect(() => {
           />
 
           <button type="submit" className="admin-submit-button" disabled={loading}>
-            {loading ? "?�성 �?.." : "QR ?�성"}
+            {loading ? "생성 중..." : "QR 생성"}
           </button>
         </form>
       </div>
 
-      {/* �?NEW : QR ?�성 모달 */}
       {showModal && responseData && (
         <div className="modal-overlay" onClick={() => setShowModal(false)}>
           <div className="modal-box" onClick={(e) => e.stopPropagation()}>
-            <h3 className="modal-title">QR코드</h3>
-            <p className="modal-guide">?�래 QR???�식?�면 ?�인?��? ?�동?�로 ?�립?�니?? </p>
+            <h3 className="modal-title">QR 코드</h3>
+            <p className="modal-guide">
+              아래 QR을 인식하면 포인트가 자동으로 적립됩니다.
+            </p>
 
-            <p className="modal-text"><strong>Claim ID:</strong> {responseData.claimId}</p>
-            <p className="modal-text"><strong>만료 ?�각:</strong> {responseData.expiresAt}</p>
-            <p className="modal-text"><strong>URL:</strong> {responseData.qrUrl}</p>
+            <p className="modal-text">
+              <strong>Claim ID:</strong> {responseData.claimId}
+            </p>
+            <p className="modal-text">
+              <strong>만료 시각:</strong> {responseData.expiresAt}
+            </p>
+            <p className="modal-text">
+              <strong>URL:</strong> {responseData.qrUrl}
+            </p>
 
-             <p className="modal-timer">
-              ?��? ?�간: {Math.floor(countdown / 60)}�?{countdown % 60}�?</p>
+            <p className="modal-timer">
+              남은 시간: {Math.floor(countdown / 60)}분 {countdown % 60}초
+            </p>
 
             {qrImage && (
               <div className="modal-qr">
@@ -179,18 +185,12 @@ useEffect(() => {
               </div>
             )}
 
-          <button 
-                  className="modal-close-btn" 
-                  onClick={() => setShowModal(false)}
-                >
-                  ?�기
-                </button>
-          
-            
+            <button className="modal-close-btn" onClick={() => setShowModal(false)}>
+              닫기
+            </button>
           </div>
         </div>
       )}
-
     </div>
   );
 }

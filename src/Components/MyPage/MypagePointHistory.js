@@ -1,11 +1,11 @@
-import "../../Styles/Mypage/PointHistory.css";
+﻿import "../../Styles/Mypage/PointHistory.css";
 import Header from "./MPsectionHeader.js";
 import { useState, useEffect } from "react";
 
 const MypagePointHistory = () => {
   const [historyList, setHistoryList] = useState([]);
 
-  // ?�� ?�이지 로드?????�체 ?�력 가?�오�?  useEffect(() => {
+  useEffect(() => {
     const token = localStorage.getItem("accessToken");
 
     fetch("/recycle-history/user", {
@@ -13,10 +13,10 @@ const MypagePointHistory = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("?�� ?�체 ?�력:", data);
+        console.log("포인트 전체 이력:", data);
         setHistoryList(data);
       })
-      .catch((err) => console.error("???�력 불러?�기 ?�패:", err));
+      .catch((err) => console.error("이력 불러오기 실패:", err));
   }, []);
 
   return (
@@ -26,7 +26,7 @@ const MypagePointHistory = () => {
       <div className="PointHistory">
         <div className="PointHistory-Body">
           <section className="point-summary">
-            <h2>보유 ?�인??/h2>
+            <h2>보유 포인트</h2>
             <div className="current-point">24P</div>
           </section>
 
@@ -34,25 +34,25 @@ const MypagePointHistory = () => {
             <table className="point-table">
               <thead>
                 <tr>
-                  <th>?�짜</th>
-                  <th>?�치</th>      {/* ?�� 추�? */}
-                  <th>?�용</th>
-                  <th>?�인??/th>
+                  <th>날짜</th>
+                  <th>위치</th>
+                  <th>내용</th>
+                  <th>포인트</th>
                 </tr>
               </thead>
 
               <tbody>
                 {historyList.length === 0 ? (
                   <tr>
-                    <td colSpan="3" style={{ textAlign: "center", padding: "20px" }}>
-                      ?�력???�습?�다.
+                    <td colSpan="4" style={{ textAlign: "center", padding: "20px" }}>
+                      이력이 없습니다.
                     </td>
                   </tr>
                 ) : (
                   historyList.map((item) => (
                     <tr key={item.id}>
-                      <td>{item.date.substring(0, 10)}</td>
-                      <td>{item.place}</td>            {/* ?�� 거점 ?�치 */}
+                      <td>{item.date?.substring(0, 10)}</td>
+                      <td>{item.place}</td>
                       <td>{item.item}</td>
                       <td>{item.points > 0 ? `+${item.points}P` : `${item.points}P`}</td>
                     </tr>
