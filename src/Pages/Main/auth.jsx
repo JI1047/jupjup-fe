@@ -60,7 +60,9 @@ export default function Admin() {
         }),
       });
 
-      if (!res.ok) throw new Error(`서버 응답 오류: ${res.status}`);
+      if (!res.ok) {
+        throw new Error(`Server response error: ${res.status}`);
+      }
 
       const data = await res.json();
       setResponseData(data);
@@ -106,7 +108,7 @@ export default function Admin() {
 
       <div className="admin-container">
         <h2 className="admin-title">QR 발급</h2>
-        <p className="admin-sub">올바른 사용자 정보를 입력해 주세요.</p>
+        <p className="admin-sub">사용자와 수거 정보를 입력해 주세요.</p>
 
         <form className="admin-form" onSubmit={handleSubmit}>
           <label className="admin-label">사용자 ID</label>
@@ -162,7 +164,7 @@ export default function Admin() {
           <div className="modal-box" onClick={(e) => e.stopPropagation()}>
             <h3 className="modal-title">QR 코드</h3>
             <p className="modal-guide">
-              아래 QR을 인식하면 포인트가 자동으로 적립됩니다.
+              아래 QR을 인식하면 해당 인증 정보가 자동으로 열립니다.
             </p>
 
             <p className="modal-text">

@@ -57,6 +57,9 @@ export function MapView() {
 
       try {
         const res = await fetch(BACKEND_URL);
+        if (!res.ok) {
+          throw new Error(`Map API request failed: ${res.status}`);
+        }
         const data = await res.json();
 
         const imageSrc = `data:image/svg+xml;utf8,${encodeURIComponent(`
@@ -84,26 +87,24 @@ export function MapView() {
 
           const itemListHtml =
             pos.itemNames && pos.itemNames.length > 0
-              ? `<ul>
-                  ${pos.itemNames.map((item) => `<li>${item}</li>`).join("")}
-                 </ul>`
+              ? `<ul>${pos.itemNames.map((item) => `<li>${item}</li>`).join("")}</ul>`
               : "<div>수거 품목 정보 없음</div>";
 
           const markerId = `marker-${index}`;
           const iwContent = `
-          <div class="infoBox" id="${markerId}">
-            <button class="close-btn" onclick="window.closeInfoWindow('${markerId}')">×</button>
-            <div class="title">${pos.name}</div>
-            <div class="label">주소:</div>
-            <div class="value">${pos.lotAddress ?? "-"}</div>
-            <div class="label">연락처</div>
-            <div class="value">${pos.tel ?? "-"}</div>
-            <div class="items-section">
-              <div class="items-label">수거 품목</div>
-              ${itemListHtml}
-            </div>
-            <div class="tail"></div>
-          </div>`;
+            <div class="infoBox" id="${markerId}">
+              <button class="close-btn" onclick="window.closeInfoWindow('${markerId}')">×</button>
+              <div class="title">${pos.name}</div>
+              <div class="label">주소:</div>
+              <div class="value">${pos.lotAddress ?? "-"}</div>
+              <div class="label">연락처:</div>
+              <div class="value">${pos.tel ?? "-"}</div>
+              <div class="items-section">
+                <div class="items-label">수거 품목</div>
+                ${itemListHtml}
+              </div>
+              <div class="tail"></div>
+            </div>`;
 
           const infowindow = new window.kakao.maps.InfoWindow({
             content: iwContent,

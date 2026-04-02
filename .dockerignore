@@ -4,6 +4,13 @@ build
 .github
 .claude
 AWSCLIV2.msi
+deploy_remote.sh
+temp_ec2_key
+temp_ec2_key.pub
+coverage
+.DS_Store
+.env
+.env.*
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
