@@ -46,7 +46,7 @@ export default function Admin() {
     setLoading(true);
 
     try {
-      const res = await fetch("/recycle-history/claims", {
+      const res = await fetch("/api/recycle-history/claims", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

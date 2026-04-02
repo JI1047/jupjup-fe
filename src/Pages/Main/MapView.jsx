@@ -5,7 +5,7 @@ import "../../Styles/Main/ui_css/infoBox.css";
 const KAKAO_JS_KEY =
   process.env.REACT_APP_KAKAO_JS_KEY || "f698892088386f2ca502628b65c42eab";
 const KAKAO_SDK = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${KAKAO_JS_KEY}&autoload=false`;
-const BACKEND_URL = "/map/main";
+const BACKEND_URL = "/api/map/main";
 
 export function MapView() {
   const mapRef = useRef(null);

@@ -8,7 +8,7 @@ const MypagePointHistory = () => {
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
 
-    fetch("/recycle-history/user", {
+    fetch("/api/recycle-history/user", {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => res.json())
