@@ -2,8 +2,9 @@ import React, { useEffect, useRef } from "react";
 import "../../Styles/Main/mapView.css";
 import "../../Styles/Main/ui_css/infoBox.css";
 
-const KAKAO_SDK =
-  "//dapi.kakao.com/v2/maps/sdk.js?appkey=f143a20f2be877dcef35366b593462b0&autoload=false";
+const KAKAO_JS_KEY =
+  process.env.REACT_APP_KAKAO_JS_KEY || "f698892088386f2ca502628b65c42eab";
+const KAKAO_SDK = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${KAKAO_JS_KEY}&autoload=false`;
 const BACKEND_URL = "/map/main";
 
 export function MapView() {
@@ -12,17 +13,38 @@ export function MapView() {
 
   useEffect(() => {
     const loadKakao = () =>
-      new Promise((resolve) => {
+      new Promise((resolve, reject) => {
         if (window.kakao && window.kakao.maps) return resolve();
+
+        const existingScript = document.querySelector(
+          `script[src="${KAKAO_SDK}"]`
+        );
+        if (existingScript) {
+          existingScript.addEventListener("load", () =>
+            window.kakao.maps.load(() => resolve())
+          );
+          existingScript.addEventListener("error", () =>
+            reject(new Error("Failed to load Kakao Maps SDK."))
+          );
+          return;
+        }
+
         const script = document.createElement("script");
         script.src = KAKAO_SDK;
         script.async = true;
+        script.onerror = () =>
+          reject(new Error("Failed to load Kakao Maps SDK."));
         script.onload = () => window.kakao.maps.load(() => resolve());
         document.head.appendChild(script);
       });
 
     const initMap = async () => {
-      await loadKakao();
+      try {
+        await loadKakao();
+      } catch (error) {
+        console.error("Failed to initialize Kakao Map:", error);
+        return;
+      }
 
       const container = document.getElementById("map");
       const options = {
@@ -65,7 +87,7 @@ export function MapView() {
               ? `<ul>
                   ${pos.itemNames.map((item) => `<li>${item}</li>`).join("")}
                  </ul>`
-              : "<div>?˜ê±° ?ˆëª© ?•ë³´ ?†ìŒ</div>";
+              : "<div>ìˆ˜ê±° í’ˆëª© ì •ë³´ ì—†ìŒ</div>";
 
           const markerId = `marker-${index}`;
           const iwContent = `
@@ -74,10 +96,10 @@ export function MapView() {
             <div class="title">${pos.name}</div>
             <div class="label">ì£¼ì†Œ:</div>
             <div class="value">${pos.lotAddress ?? "-"}</div>
-            <div class="label">?°ë½ì²?</div>
+            <div class="label">ì—°ë½ì²˜</div>
             <div class="value">${pos.tel ?? "-"}</div>
             <div class="items-section">
-              <div class="items-label">?˜ê±° ??ª©</div>
+              <div class="items-label">ìˆ˜ê±° í’ˆëª©</div>
               ${itemListHtml}
             </div>
             <div class="tail"></div>
@@ -102,14 +124,13 @@ export function MapView() {
         });
 
         markerDataRef.current = newMarkerData;
-      } catch (e) {
-        console.error("ë§ˆì»¤ ?°ì´??ë¡œë”© ?¤íŒ¨:", e);
+      } catch (error) {
+        console.error("Failed to load marker data:", error);
       }
     };
 
     initMap();
 
-    // ???„ì—­ ?«ê¸° ?¨ìˆ˜ ?±ë¡
     window.closeInfoWindow = (id) => {
       if (window.infowindows && window.infowindows[id]) {
         window.infowindows[id].close();
@@ -117,7 +138,6 @@ export function MapView() {
     };
   }, []);
 
-  // ?” ?¸ë??ì„œ ë§ˆì»¤ë¡??´ë™
   MapView.moveToMarkerByName = (name) => {
     const map = mapRef.current;
     if (!map) return;
@@ -131,7 +151,7 @@ export function MapView() {
       map.setCenter(position);
       match.infowindow.open(map, match.marker);
     } else {
-      console.warn("?´ë‹¹ ë§ˆì»¤ë¥?ì°¾ì„ ???†ìŠµ?ˆë‹¤.");
+      console.warn("No marker matched the selected name.");
     }
   };
 
